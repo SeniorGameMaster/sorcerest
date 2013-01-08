@@ -5,52 +5,28 @@ public class TreeManager : MonoBehaviour {
 	
 	public Transform prefab;
 	public int numberOfObjects;
-	public float recycleOffset;
-	public Vector3 minSize, maxSize;
+	public Vector3 minPosition, maxPosition;
 	
 	private Vector3 nextPosition;
 	private Queue<Transform> objectQueue;
 	
 	void Start () {
+		nextPosition = transform.localPosition;
+		nextPosition.x += 10f;
 		objectQueue = new Queue<Transform>(numberOfObjects);
 		for(int i = 0; i < numberOfObjects; i++){
-			objectQueue.Enqueue((Transform)Instantiate(prefab, new Vector3(0f, 0f, -100f), Quaternion.identity));
+			
+			
+			Transform o = (Transform)Instantiate(prefab);
+			o.localPosition = new Vector3(
+			Random.Range(minPosition.x, maxPosition.x)
+				,Random.Range(minPosition.y, maxPosition.y)
+				,Random.Range(minPosition.z, maxPosition.z));//nextPosition;
+			//nextPosition.x += 7f;
+			objectQueue.Enqueue(o);//((Transform)Instantiate(prefab, new Vector3(-8f, -13f, 34f), Quaternion.identity));
 		}
-		enabled = false;
 	}
 	
 	void Update () {
-		/*if(objectQueue.Peek().localPosition.x + recycleOffset < Runner.distanceTraveled){
-			Recycle();
-		}*/
-	}
-	
-	private void Recycle () {
-		Vector3 scale = new Vector3(
-			Random.Range(minSize.x, maxSize.x),
-			Random.Range(minSize.y, maxSize.y),
-			Random.Range(minSize.z, maxSize.z));
-		
-		Vector3 position = nextPosition;
-		position.x += scale.x * 0.5f;
-		position.y += scale.y * 0.5f;
-		
-		Transform o = objectQueue.Dequeue();
-		o.localScale = scale;
-		o.localPosition = position;
-		nextPosition.x += scale.x;
-		objectQueue.Enqueue(o);
-	}
-	
-	private void GameStart () {
-		nextPosition = transform.localPosition;
-		for(int i = 0; i < numberOfObjects; i++){
-			Recycle();
-		}
-		enabled = true;
-	}
-	
-	private void GameOver () {
-		enabled = false;
 	}
 }
