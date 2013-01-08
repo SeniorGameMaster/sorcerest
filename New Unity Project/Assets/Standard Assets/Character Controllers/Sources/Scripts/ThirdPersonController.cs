@@ -30,25 +30,25 @@ enum CharacterState {
 private CharacterState _characterState;
 
 // The speed when walking
-float walkSpeed= 2.0f;
+public float walkSpeed= 2.0f;
 // after trotAfterSeconds of walking we trot with trotSpeed
-float trotSpeed= 4.0f;
+public float trotSpeed= 4.0f;
 // when pressing "Fire3" button (cmd) we start running
-float runSpeed= 6.0f;
+public float runSpeed= 6.0f;
 
-float inAirControlAcceleration= 3.0f;
+public float inAirControlAcceleration= 3.0f;
 
 // How high do we jump when pressing jump and letting go immediately
-float jumpHeight= 0.5f;
+public float jumpHeight= 0.5f;
 
 // The gravity for the character
-float gravity= 20.0f;
+public float gravity= 20.0f;
 // The gravity in controlled descent mode
-float speedSmoothing= 10.0f;
-float rotateSpeed= 500.0f;
-float trotAfterSeconds= 3.0f;
+public float speedSmoothing= 10.0f;
+public float rotateSpeed= 500.0f;
+public float trotAfterSeconds= 3.0f;
 
-bool canJump= true;
+public bool canJump= true;
 
 private float jumpRepeatTime= 0.05f;
 private float jumpTimeout= 0.15f;
