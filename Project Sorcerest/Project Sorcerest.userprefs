@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\NewgameButton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Necromancer GUI\GUITestScript.cs">
     <Files>
-      <File FileName="Assets\Script\SettingButton.cs" Line="25" Column="1" />
-      <File FileName="Assets\Script\NewgameButton.cs" Line="12" Column="28" />
+      <File FileName="Assets\Script\SettingButton.cs" Line="23" Column="3" />
+      <File FileName="Assets\Necromancer GUI\GUITestScript.cs" Line="107" Column="3" />
+      <File FileName="Assets\Necromancer GUI\GUITestScript.js" Line="123" Column="53" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
