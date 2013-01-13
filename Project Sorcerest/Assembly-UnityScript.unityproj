@@ -46,7 +46,9 @@
   <ItemGroup>
      <Compile Include="Assets\Necromancer GUI\GUITestScript.js" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Necromancer GUI\Kingthings.txt" />
+     <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\Necromancer GUI\Readme.txt" />
   </ItemGroup>
   <ItemGroup>
