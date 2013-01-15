@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\RabbitBehaviourScript.cs" />
      <Compile Include="Assets\Script\ExitButton.cs" />
      <Compile Include="Assets\Script\Main.cs" />
      <Compile Include="Assets\Script\Mainmenu.cs" />
