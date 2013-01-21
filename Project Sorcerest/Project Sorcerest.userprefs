@@ -1,17 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RabbitBehaviourScript.cs">
     <Files>
-      <File FileName="Assets\Script\Water.cs" Line="1" Column="1" />
-      <File FileName="Assets\RabbitBehaviourScript.cs" Line="24" Column="33" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\SettingButton.cs">
-    <Files>
-      <File FileName="Assets\Script\SettingButton.cs" Line="23" Column="3" />
-      <File FileName="Assets\Necromancer GUI\GUITestScript.cs" Line="107" Column="3" />
-      <File FileName="Assets\Necromancer GUI\GUITestScript.js" Line="123" Column="53" />
->>>>>>> 0d751e24c6c10c1c05eec2d00f9bd80fdafc5c82
+      <File FileName="Assets\RabbitBehaviourScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
