@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RabbitBehaviourScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Necromancer GUI\GUISystemButton.cs">
     <Files>
-      <File FileName="Assets\RabbitBehaviourScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Necromancer GUI\GUISystemButton.cs" Line="32" Column="3" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" Line="1" Column="1" />
+      <File FileName="Assets\Necromancer GUI\GUITestScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

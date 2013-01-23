@@ -37,20 +37,21 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Necromancer GUI\GUISystemButton.cs" />
      <Compile Include="Assets\Necromancer GUI\GUITestScript.cs" />
-     <Compile Include="Assets\RabbitBehaviourScript.cs" />
-     <Compile Include="Assets\Script\ExitButton.cs" />
-     <Compile Include="Assets\Script\Main.cs" />
-     <Compile Include="Assets\Script\Mainmenu.cs" />
-     <Compile Include="Assets\Script\NewgameButton.cs" />
-     <Compile Include="Assets\Script\SettingButton.cs" />
+     <Compile Include="Assets\Script\NotUse\ExitButton.cs" />
+     <Compile Include="Assets\Script\NotUse\Main.cs" />
+     <Compile Include="Assets\Script\NotUse\Mainmenu.cs" />
+     <Compile Include="Assets\Script\NotUse\NewgameButton.cs" />
+     <Compile Include="Assets\Script\NotUse\SettingButton.cs" />
+     <Compile Include="Assets\Script\RabbitBehaviourScript.cs" />
      <Compile Include="Assets\Script\TreeManager.cs" />
      <Compile Include="Assets\Script\Water.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />

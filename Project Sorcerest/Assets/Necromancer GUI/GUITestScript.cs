@@ -96,7 +96,7 @@ private string NecroText ="This started as a question... How flexible is the bui
 		GUILayout.BeginArea (new Rect (Screen.width/2 - 125 , Screen.height/2 - 250, 300, 500));
 		
 		if(GUILayout.Button("New Game", "MainmenuButton",GUILayout.Width(300),GUILayout.Height(75)))
-			Application.LoadLevel("NewScene");
+			Application.LoadLevel("Level1");
 		
 		GUILayout.Space(50);
 		
