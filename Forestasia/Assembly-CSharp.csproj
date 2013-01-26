@@ -46,11 +46,16 @@
   <ItemGroup>
      <Compile Include="Assets\Necromancer GUI\GUISystemButton.cs" />
      <Compile Include="Assets\Necromancer GUI\GUITestScript.cs" />
+     <Compile Include="Assets\Script\EnemyAI.cs" />
+     <Compile Include="Assets\Script\EnemyAttack.cs" />
+     <Compile Include="Assets\Script\EnemyHealth.cs" />
      <Compile Include="Assets\Script\NotUse\ExitButton.cs" />
      <Compile Include="Assets\Script\NotUse\Main.cs" />
      <Compile Include="Assets\Script\NotUse\Mainmenu.cs" />
      <Compile Include="Assets\Script\NotUse\NewgameButton.cs" />
      <Compile Include="Assets\Script\NotUse\SettingButton.cs" />
+     <Compile Include="Assets\Script\PlayerAttack.cs" />
+     <Compile Include="Assets\Script\PlayerHealth.cs" />
      <Compile Include="Assets\Script\RabbitBehaviourScript.cs" />
      <Compile Include="Assets\Script\TreeManager.cs" />
      <Compile Include="Assets\Script\Water.cs" />
