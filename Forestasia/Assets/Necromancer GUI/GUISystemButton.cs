@@ -19,7 +19,7 @@ public class GUISystemButton : MonoBehaviour {
 	{
 		GUI.skin = mySkin;
 		
-		GUILayout.BeginArea (new Rect (0 , Screen.height-200, 300, 500));
+		GUILayout.BeginArea (new Rect (Screen.width-200 , Screen.height-200, 300, 500));
 		
 		if(MapLevel != 3)
 		{

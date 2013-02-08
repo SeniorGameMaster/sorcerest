@@ -6,10 +6,11 @@ public class EnemyAttack : MonoBehaviour {
 	public GameObject target;
 	public float attackTimer;
 	public float coolDown;
+	public Transform _myTransform;
 	
 	// Use this for initialization
 	void Start () {
-		
+		_myTransform = transform;
 		attackTimer = 0;
 		coolDown = 2.0f;
 	}
@@ -22,9 +23,9 @@ public class EnemyAttack : MonoBehaviour {
 		if(attackTimer < 0)
 			attackTimer = 0;
 		
-		if(attackTimer == 0) {
+		if(attackTimer == 0 && !_myTransform.GetComponent<EnemyHealth>().isDead ) {
 			Attack();
-			attackTimer = coolDown;
+			attackTimer = coolDown;		
 		}
 	}
 	
@@ -35,12 +36,10 @@ public class EnemyAttack : MonoBehaviour {
 		
 		float direction = Vector3.Dot(dir, transform.forward);
 		
-		Debug.Log(direction);
-		
 		if(distance < 4.5f) {
 			if(direction > 0) {
 				PlayerHealth eh = (PlayerHealth)target.GetComponent("PlayerHealth");
-				eh.AdjustCurrentHealth(-10);
+				eh.AdjustCurrentHealth(-2);
 			}
 		}
 	}

@@ -36,8 +36,6 @@ public class PlayerAttack : MonoBehaviour {
 		
 		float direction = Vector3.Dot(dir, transform.forward);
 		
-		Debug.Log(direction);
-		
 		if(distance < 4.5f) {
 			if(direction > 0) {
 				EnemyHealth eh = (EnemyHealth)target.GetComponent("EnemyHealth");
