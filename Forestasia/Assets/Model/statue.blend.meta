@@ -3,20 +3,18 @@ guid: eac4106f1a211c84ba6f9f6fd765ce47
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Circle
+    100000: Circle
+    100002: //RootNode
     100004: Water
-    400000: //RootNode
-    400002: Circle
+    400000: Circle
+    400002: //RootNode
     400004: Water
-    2300000: //RootNode
-    2300002: Circle
-    2300004: Water
-    3300000: //RootNode
-    3300002: Circle
-    3300004: Water
-    4300000: Circle
-    4300002: Water
+    2300000: Circle
+    2300002: Water
+    3300000: Circle
+    3300002: Water
+    4300000: Water
+    4300002: Circle
     7400000: Default Take
     9500000: //RootNode
   materials:
