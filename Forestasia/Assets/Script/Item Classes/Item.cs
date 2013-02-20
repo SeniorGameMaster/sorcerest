@@ -1,26 +1,33 @@
 using UnityEngine;
 using System.Collections;
+using System.ComponentModel;
 
 public class Item : MonoBehaviour {
 	private string _name;
+	private ItemID _id;
 	private int _value;
-	private RarityTypes _rarity;
+	private ItemTypes _type;
+	private string _detail;
 	private int _curDur;
 	private int _maxDur;
 	private Texture2D _icon;
 	
 	public Item() {
-		_name = "Need Name";
+		_name = "Name";
+		_id = ItemID.None;
 		_value = 0;
-		_rarity = RarityTypes.Common;
+		_type = ItemTypes.Misc;
+		_detail = "Detail";
 		_maxDur = 50;
 		_curDur = _maxDur;
 	}
 	
-	public Item (string name, int value, RarityTypes rare, int maxDur, int curDur) {
+	public Item (string name, ItemID id, int value, ItemTypes rare, string detail, int maxDur, int curDur) {
 		_name = name;
+		_id = id;
 		_value = value;
-		_rarity = rare;
+		_type = rare;
+		_detail = detail;
 		_maxDur = maxDur;
 		_curDur = curDur;
 	}
@@ -30,14 +37,24 @@ public class Item : MonoBehaviour {
 		set { _name = value; }	
 	}
 	
+	public ItemID Id {
+		get { return _id; }	
+		set { _id = value; }	
+	}
+	
 	public int Value {
 		get { return _value; }	
 		set { _value = value; }	
 	}
 	
-	public RarityTypes Rarity {
-		get { return _rarity; }	
-		set { _rarity = value; }	
+	public ItemTypes Type {
+		get { return _type; }	
+		set { _type = value; }	
+	}
+	
+	public string Detail {
+		get { return _detail; }	
+		set { _detail = value; }	
 	}
 	
 	public int MaxDurability {
@@ -57,14 +74,70 @@ public class Item : MonoBehaviour {
 	
 	public virtual string ToolTip() {
 		return Name + "\n" +
-				"Value " + Value + "\n" + 
-				"Durability " + CurDurability + "/" + MaxDurability + "\n";
+				"Points : " + Value + "\n" +
+				"Type : " + Type + "\n" +
+				"Detail :" + Detail + "\n";
 				
 	}
 }
 
-public enum RarityTypes{
-		Common,
-		Uncommon,
-		Rare
-	}
+public enum ItemTypes {
+		Misc,
+		Ingredient,
+		Quest,
+		Unknown,
+		Legendary,
+		Usable
+}
+
+public enum ItemID {
+	/*
+		None = 0,
+		Boots_of_Intelligent = 1,
+		Wand_of_Truth = 2,
+		FeatherPen = 3,
+		LightCrystal = 4,
+		MixColor = 5,
+		Gemstone = 6,
+		PhilosopherMap = 7,
+		OldBoots = 8,
+		RabbitFur = 9
+	*/
+	[Description("Unknown Item")]
+		None = 0,
+	[Description("The boots that improve  \n owned intelligent.")]
+		Boots_of_Intelligent = 1,
+	[Description("The legendary wand using \n for see reality.")]
+		Wand_of_Truth = 2,
+	[Description("Everythings will answer by \n this pen.")]
+		FeatherPen = 3,
+	[Description("Shining and brilliant \n rare crystal.")]
+		LightCrystal = 4,
+	[Description("Mixing type of color.")]
+		MixColor = 5,
+	[Description("Legendary jewel using \n in  sacrifice magic.")]
+		Gemstone = 6,
+	[Description("Show every things in \n the area.")]
+		PhilosopherMap = 7,
+	[Description("Very oldboots look like \n it use for a long time.")]
+		OldBoots = 8,
+	[Description("Fur from rabbit \n so fluffy.")]
+		RabbitFur = 9,
+	[Description("Branch from thounsand \n year olds tree.")]
+		MysticalBranch = 10,
+	[Description("old branch from tree.")]
+		OldBranch = 11,
+	[Description("rare herb grow by \n magic power from forest.")]
+		CognitiveHerb = 12,
+	[Description("sharp spike from \n hedgehog use to pierce smth.")]
+		Spike_of_Hedgehog = 13,
+	[Description("stored water from \n cactus around dessert")]
+		Water_of_Cactus = 14,
+	[Description("mystical liquid extract by \n alchemy ")]
+		FortunePotion = 15,
+	[Description("old scroll contain \n some description ")]
+		TruthScroll = 16
+}
+
+	
+

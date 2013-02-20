@@ -1,21 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Item Classes\ItemGenerator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\HUD Classes\PlayerGUI.cs">
     <Files>
-      <File FileName="Assets\Script\Item Classes\ItemGenerator.cs" Line="23" Column="3" />
-      <File FileName="Assets\Script\LootingItem.cs" Line="156" Column="3" />
-      <File FileName="Assets\Script\Item Classes\BuffItem.cs" Line="5" Column="31" />
-      <File FileName="Assets\Script\Character Classes\BaseStat.cs" Line="14" Column="14" />
-      <File FileName="Assets\Script\Character Classes\Attribute.cs" Line="8" Column="3" />
-      <File FileName="Assets\Script\Item Classes\Weapon.cs" Line="45" Column="53" />
-      <File FileName="Assets\Script\Item Classes\Jewelry.cs" Line="16" Column="24" />
-      <File FileName="Assets\Script\Item Classes\Clothing.cs" Line="16" Column="25" />
-      <File FileName="Assets\Script\Item Classes\Armor.cs" Line="16" Column="31" />
-      <File FileName="Assets\Script\Item Classes\Consumable.cs" Line="51" Column="43" />
-      <File FileName="Assets\Script\Item Classes\Item.cs" Line="17" Column="21" />
-      <File FileName="Assets\Script\HUD Classes\MyGUI_1.cs" Line="203" Column="31" />
-      <File FileName="Assets\Script\Quest Classes\TestQuest.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Quest Classes\AbstractQuest.cs" Line="125" Column="8" />
+      <File FileName="Assets\Script\Quest Classes\BaseQuest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Inventory.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\LootingItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Item Classes\ItemGenerator.cs" Line="35" Column="4" />
+      <File FileName="Assets\Script\HUD Classes\PlayerGUI.cs" Line="276" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

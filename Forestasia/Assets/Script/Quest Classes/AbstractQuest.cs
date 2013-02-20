@@ -6,7 +6,7 @@ public abstract class AbstractQuest {
 	protected int _questDialogue;
 	protected string _questDetail;
 	protected string _questGoal;
-	protected QuestItemReward _questItemReward;
+	protected ItemID _questItemReward;
 	protected bool _showQuest;
 	protected ItemID[] _itemGoal;
 	protected int[] _maxAmount;
@@ -44,7 +44,7 @@ public abstract class AbstractQuest {
 		set { _questGoal = value; }	
 	}
 	
-	public QuestItemReward Reward {
+	public ItemID Reward {
 		get { return _questItemReward; }	
 		set { _questItemReward = value; }	
 	}
@@ -99,7 +99,9 @@ public abstract class AbstractQuest {
 
 public enum QuestID {
 		None = 0,
-		FindBoots = 1,		
+		GetAllLegendaryItem = 1,
+		FindBoots = 2,
+		WandOfTruth = 3
 }
 
 public enum QuestProcess {
@@ -115,13 +117,9 @@ public enum QuestType {
 		SearchLocation = 3
 }
 
-public enum ItemID {
-		None = 0,
-		OldBoots = 1,
-		RabbitFur = 2
-}
 public enum QuestItemReward {
 		None = 0,
 		Old_Boots = 1,
 		RabbitFur = 2
+		
 }

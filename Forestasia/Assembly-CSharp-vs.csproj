@@ -62,8 +62,9 @@
      <Compile Include="Assets\Script\EnemyAI.cs" />
      <Compile Include="Assets\Script\EnemyAttack.cs" />
      <Compile Include="Assets\Script\EnemyHealth.cs" />
+     <Compile Include="Assets\Script\EnumClass.cs" />
      <Compile Include="Assets\Script\HUD Classes\MyGUI.cs" />
-     <Compile Include="Assets\Script\HUD Classes\MyGUI_1.cs" />
+     <Compile Include="Assets\Script\HUD Classes\PlayerGUI.cs" />
      <Compile Include="Assets\Script\Inventory.cs" />
      <Compile Include="Assets\Script\Item Classes\Armor.cs" />
      <Compile Include="Assets\Script\Item Classes\BuffItem.cs" />
@@ -85,10 +86,10 @@
      <Compile Include="Assets\Script\PlayerInput.cs" />
      <Compile Include="Assets\Script\Quest Classes\AbstractQuest.cs" />
      <Compile Include="Assets\Script\Quest Classes\BaseQuest.cs" />
+     <Compile Include="Assets\Script\Quest Classes\BootsQuest.cs" />
+     <Compile Include="Assets\Script\Quest Classes\LegendaryQuest.cs" />
      <Compile Include="Assets\Script\Quest Classes\OwlQuest.cs" />
-     <Compile Include="Assets\Script\Quest Classes\Quest.cs" />
-     <Compile Include="Assets\Script\Quest Classes\Test2Quest.cs" />
-     <Compile Include="Assets\Script\Quest Classes\TestQuest.cs" />
+     <Compile Include="Assets\Script\Quest Classes\WandQuest.cs" />
      <Compile Include="Assets\Script\Targetting.cs" />
      <Compile Include="Assets\Script\TreeManager.cs" />
      <Compile Include="Assets\Script\Water.cs" />
