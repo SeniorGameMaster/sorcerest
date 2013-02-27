@@ -13,6 +13,6 @@ public class Armor : Clothing {
 	
 	public int ArmorLevel {
 		get { return _armorLevel; }	
-		set { _armorLevel = Value; }
+		set { _armorLevel = Point; }
 	}
 }

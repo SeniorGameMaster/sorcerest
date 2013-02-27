@@ -17,6 +17,10 @@ public class PlayerInput : MonoBehaviour {
 		if(Input.GetButtonUp("Toggle Questlog")) {
 			Messenger.Broadcast("ToggleQuestlog");
 		}
+
+		if(Input.GetButtonUp("Toggle Recipe")) {
+			Messenger.Broadcast("ToggleRecipe");
+		}
 		
 		/*
 		if(Input.GetMouseButtonDown("Move Forward")) {

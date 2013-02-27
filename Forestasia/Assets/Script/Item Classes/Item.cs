@@ -5,7 +5,9 @@ using System.ComponentModel;
 public class Item : MonoBehaviour {
 	private string _name;
 	private ItemID _id;
-	private int _value;
+	private int _curAmount;
+	private int _maxAmount;
+	private int _point;
 	private ItemTypes _type;
 	private string _detail;
 	private int _curDur;
@@ -15,17 +17,19 @@ public class Item : MonoBehaviour {
 	public Item() {
 		_name = "Name";
 		_id = ItemID.None;
-		_value = 0;
+		_point = 0;
 		_type = ItemTypes.Misc;
 		_detail = "Detail";
 		_maxDur = 50;
 		_curDur = _maxDur;
 	}
 	
-	public Item (string name, ItemID id, int value, ItemTypes rare, string detail, int maxDur, int curDur) {
+	public Item (string name, ItemID id, int curAmount, int maxAmount, int point, ItemTypes rare, string detail, int maxDur, int curDur) {
 		_name = name;
 		_id = id;
-		_value = value;
+		_curAmount = curAmount;
+		_maxAmount = maxAmount;
+		_point = point;
 		_type = rare;
 		_detail = detail;
 		_maxDur = maxDur;
@@ -42,9 +46,19 @@ public class Item : MonoBehaviour {
 		set { _id = value; }	
 	}
 	
-	public int Value {
-		get { return _value; }	
-		set { _value = value; }	
+	public int CurAmount {
+		get { return _curAmount; }	
+		set { _curAmount = value; }	
+	}
+	
+	public int MaxAmount {
+		get { return _maxAmount; }	
+		set { _maxAmount = value; }	
+	}
+	
+	public int Point {
+		get { return _point; }	
+		set { _point = value; }	
 	}
 	
 	public ItemTypes Type {
@@ -74,7 +88,8 @@ public class Item : MonoBehaviour {
 	
 	public virtual string ToolTip() {
 		return Name + "\n" +
-				"Points : " + Value + "\n" +
+				"Amounts : " + CurAmount + "\n" +
+				"Points : " + Point + "\n" +
 				"Type : " + Type + "\n" +
 				"Detail :" + Detail + "\n";
 				

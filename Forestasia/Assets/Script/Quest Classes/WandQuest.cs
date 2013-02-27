@@ -2,8 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class WandQuest : AbstractQuest{	
-	
-	
+
 	public WandQuest() {
 		_questId = QuestID.WandOfTruth;
 		_questName = "Wand_of_Truth";

@@ -53,6 +53,7 @@ public class LootingItem : MonoBehaviour {
 	public ItemID[] dropID;
 	public ItemTypes[] dropType;
 	public int[] dropChance;
+	public int[] dropAmount;
 
 	public State state; 				//Current state of object
 	public Type type;					//Type of looting item
@@ -237,7 +238,7 @@ public class LootingItem : MonoBehaviour {
 			for (int i = 0; i < dropID.Length; i++) {
 				
 				if(UnityEngine.Random.Range(0,100) <= dropChance[i])
-					PopulateItem(dropType[i],dropID[i]);
+					PopulateItem(dropType[i],dropID[i],dropAmount[i]);
 			}
 				
 		}
@@ -253,7 +254,7 @@ public class LootingItem : MonoBehaviour {
 				
 				switch (box) {
 					case TreasureID.OldbootsBox :
-						PopulateItem(ItemTypes.Quest,ItemID.OldBoots);
+						//PopulateItem(ItemTypes.Quest,ItemID.OldBoots);
 					break;
 				default:break;
 				}
@@ -264,7 +265,7 @@ public class LootingItem : MonoBehaviour {
 				
 				switch (monster) {
 					case MonsterID.Rabbit :
-						PopulateItem(ItemTypes.Quest,ItemID.RabbitFur);
+						//PopulateItem(ItemTypes.Quest,ItemID.RabbitFur);
 					break;
 				default:break;
 				}
@@ -284,9 +285,9 @@ public class LootingItem : MonoBehaviour {
 		}
 	}
 	
-	private void PopulateItem(ItemTypes itemTypes, ItemID itemID) {
+	private void PopulateItem(ItemTypes itemTypes, ItemID itemID, int amount) {
 		
-		loot.Add(ItemGenerator.CreatingProcess(itemTypes, itemID));
+		loot.Add(ItemGenerator.CreatingProcess(itemTypes, itemID, amount));
 	
 		_used = true;
 		

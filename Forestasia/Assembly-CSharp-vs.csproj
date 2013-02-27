@@ -65,7 +65,6 @@
      <Compile Include="Assets\Script\EnumClass.cs" />
      <Compile Include="Assets\Script\HUD Classes\MyGUI.cs" />
      <Compile Include="Assets\Script\HUD Classes\PlayerGUI.cs" />
-     <Compile Include="Assets\Script\Inventory.cs" />
      <Compile Include="Assets\Script\Item Classes\Armor.cs" />
      <Compile Include="Assets\Script\Item Classes\BuffItem.cs" />
      <Compile Include="Assets\Script\Item Classes\Clothing.cs" />
@@ -85,10 +84,11 @@
      <Compile Include="Assets\Script\PlayerHealth.cs" />
      <Compile Include="Assets\Script\PlayerInput.cs" />
      <Compile Include="Assets\Script\Quest Classes\AbstractQuest.cs" />
-     <Compile Include="Assets\Script\Quest Classes\BaseQuest.cs" />
      <Compile Include="Assets\Script\Quest Classes\BootsQuest.cs" />
      <Compile Include="Assets\Script\Quest Classes\LegendaryQuest.cs" />
+     <Compile Include="Assets\Script\Quest Classes\ObjectInteraction.cs" />
      <Compile Include="Assets\Script\Quest Classes\OwlQuest.cs" />
+     <Compile Include="Assets\Script\Quest Classes\RecipeData.cs" />
      <Compile Include="Assets\Script\Quest Classes\WandQuest.cs" />
      <Compile Include="Assets\Script\Targetting.cs" />
      <Compile Include="Assets\Script\TreeManager.cs" />
