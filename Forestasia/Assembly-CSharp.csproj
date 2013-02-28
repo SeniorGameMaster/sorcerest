@@ -37,10 +37,10 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +91,7 @@
      <Compile Include="Assets\Script\Quest Classes\OwlQuest.cs" />
      <Compile Include="Assets\Script\Quest Classes\WandQuest.cs" />
      <Compile Include="Assets\Script\Targetting.cs" />
+     <Compile Include="Assets\Script\TotemScript.cs" />
      <Compile Include="Assets\Script\TreeManager.cs" />
      <Compile Include="Assets\Script\Water.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
