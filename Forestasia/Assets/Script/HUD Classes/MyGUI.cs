@@ -211,7 +211,7 @@ public class MyGUI : MonoBehaviour {
 				if(cnt < PlayerCharacter.Inventory.Count) {
 					if(GUI.Button(new Rect(5 + (x * buttonWidth), 20 + (y * buttonHeight), buttonWidth, buttonHeight), PlayerCharacter.Inventory[cnt].Name)) {
 						if(_displayMixingWindow){
-							PlayerCharacter.Mixing.Add(PlayerCharacter.Inventory[cnt]);
+						//	PlayerCharacter.Mixing.Add(PlayerCharacter.Inventory[cnt]);
 							PlayerCharacter.Inventory.RemoveAt(cnt);		
 						}
 					}
@@ -244,18 +244,19 @@ public class MyGUI : MonoBehaviour {
 		GUI.DragWindow();
 	}
 	public void GetAllMixingToInventory() {
+		/*
 		for(int x = 0; x < PlayerCharacter.Mixing.Count; x++) {
 			PlayerCharacter.Inventory.Add(PlayerCharacter.Mixing[x]);
 		}
-
+		
 		PlayerCharacter.Mixing.RemoveRange(0,PlayerCharacter.Mixing.Count);		
-	
+	*/
 		
 	}
 	
 	private void MixingWindow(int id) {
 		int count = 0;
-		
+		/*
 		for(int y = 0; y < 3; y++) {
 			for(int x = 0; x < 4; x++) {	
 				if(count < PlayerCharacter.Mixing.Count) {
@@ -274,7 +275,7 @@ public class MyGUI : MonoBehaviour {
 			}
 		}
 		
-		
+		*/
 		GUI.DragWindow();
 	}
 	

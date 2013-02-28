@@ -17,6 +17,7 @@ public class EnumClass {
 		    else
 		        return value.ToString();
 	}
+	
 	/*
 	public struct MonsterObj {
 		public MonsterID monID;

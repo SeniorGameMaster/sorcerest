@@ -5,15 +5,20 @@ public static class ItemGenerator {
 	public const int BASE_MELEE_RANGE = 1;
 	public const int BASE_RANGED_RANGE = 5;
 	
+	private const int MAX_AMOUNT_INGREDIENT = 99;
+	private const int MAX_AMOUNT_QUEST = 99;
+	private const int MAX_AMOUNT_USABLE = 10;
+	private const int MAX_AMOUNT_LEGENDARY = 1;
+	
 	private const string MELEE_WEAPON_PATH = "Quest/";
 	private const string QUEST_ITEM_PATH = "Quest/";
 	
-	public static Item CreatingProcess(ItemTypes itemTypes, ItemID itemID) {
+	public static Item CreatingProcess(ItemTypes itemTypes, ItemID itemID, int amount) {
 		//decide what type of item to make
 		//Item temp = new Item();
 		//call the method to create that base item type
 		
-		Item item = CreatItemType(itemTypes, itemID);
+		Item item = CreatItemType(itemTypes, itemID, amount);
 		return item;
 		/*
 		switch (itemTypes) {
@@ -53,11 +58,42 @@ public static class ItemGenerator {
 		item.MaxDurability = Random.Range(50,61);
 		item.CurDurability = item.MaxDurability;
 		//return the new Item
+		
+			private string _name;
+	private ItemID _id;
+	private int _curAmount;
+	private int _maxAmount;
+	private int _point;
+	private ItemTypes _type;
+	private string _detail;
+	private int _curDur;
+	private int _maxDur;
+	private Texture2D _icon;
+	
 		 */
 		
 		
 	}
 	
+	public static Item addItemAmount(Item addItem, int amount) {
+		Item alchemyItem = new Item(addItem.Name, addItem.Id, amount,addItem.MaxAmount,
+			addItem.Point, addItem.Type, addItem.Detail, addItem.MaxDurability, addItem.CurDurability);
+		return alchemyItem;
+		/*
+		alchemyItem.Name = addItem.Name;
+		alchemyItem.Id = addItem.Id;
+		alchemyItem.CurAmount = amount;
+		alchemyItem.MaxAmount = addItem.MaxAmount;
+		alchemyItem.Point = addItem.Point;
+		alchemyItem.Type = addItem.Type;
+		alchemyItem.Detail = addItem.Detail;
+		alchemyItem.CurDurability = addItem.CurDurability;
+		alchemyItem.MaxDurability = addItem.MaxDurability;
+		*/
+		
+	}
+	
+	/*
 	private static Item CreatItemType(ItemTypes itemTypes, ItemID itemID) {
 	
 		switch (itemTypes) {
@@ -94,30 +130,82 @@ public static class ItemGenerator {
 		default: return null;
 		}
 		
-	}
+	}*/
 	
-	private static Item CreateItemQuest(ItemID itemID) {
-		Item questItem = new Item();
+	private static Item CreatItemType(ItemTypes itemTypes, ItemID itemID, int amount) {
+		Item itemType = new Item();
 		
-		questItem.Name = Enum.GetName(typeof(ItemID), itemID);
-		questItem.Id = itemID;
-		questItem.Value = 100;
-		questItem.Detail = EnumClass.GetEnumDescription(itemID);	
 		
-		switch(itemID) {
-		case ItemID.OldBoots :/*
-			questItem.Name = Enum.GetName(typeof(ItemID), itemID);
-			questItem.Value = 100;
-			questItem.Detail = "Very oldboots look like \n it use for a long time";*/
-			questItem.Icon = Resources.Load(QUEST_ITEM_PATH + questItem.Name) as Texture2D;
+		switch (itemTypes) {
+			
+		case ItemTypes.Misc :
+			itemType = CreateItemQuest(itemID, amount);
 			break;
-		case ItemID.RabbitFur :/*
-			questItem.Name = Enum.GetName(typeof(ItemID), itemID);
-			questItem.Value = 10;
-			questItem.Detail = "Fur from rabbit \n so fluffy";*/
-			//questItem.Icon = Resources.Load(QUEST_ITEM_PATH + questItem.Name) as Texture2D;
+		
+		case ItemTypes.Ingredient :
+			itemType = CreatItemIngredient(itemID, amount);
 			break;
 			
+		case ItemTypes.Quest :
+			itemType = CreateItemQuest(itemID, amount);
+			break;
+			
+		case ItemTypes.Legendary :
+			itemType = CreateItemQuest(itemID, amount);	
+			break;
+		
+		case ItemTypes.Usable :
+			itemType = CreateItemQuest(itemID, amount);		
+			break;
+			
+		case ItemTypes.Unknown :
+			break;
+			
+		default:break;
+		}
+		
+		itemType.Name = Enum.GetName(typeof(ItemID), itemID);
+		itemType.Id = itemID;
+		itemType.Detail = EnumClass.GetEnumDescription(itemID);	
+		itemType.Type = itemTypes;
+		
+		return itemType;
+	}
+	
+	private static Item CreatItemIngredient(ItemID itemID, int amount) {
+		Item ingredientItem = new Item();
+		ingredientItem.CurAmount = UnityEngine.Random.Range(1,amount);
+		ingredientItem.MaxAmount = MAX_AMOUNT_INGREDIENT;
+		
+		switch(itemID) {
+		case ItemID.CognitiveHerb :
+			ingredientItem.Point = 5;
+			break;
+		case ItemID.Water_of_Cactus :
+			ingredientItem.Point = 55;
+			break;
+			
+		default:break;
+		}
+		
+		return ingredientItem;
+	}
+	
+	private static Item CreateItemQuest(ItemID itemID, int amount) {
+		Item questItem = new Item();
+		questItem.CurAmount = UnityEngine.Random.Range(1,amount);
+		questItem.MaxAmount = MAX_AMOUNT_QUEST;
+
+		switch(itemID) {
+		case ItemID.OldBoots :
+			questItem.Point = 100;
+			questItem.Icon = Resources.Load(QUEST_ITEM_PATH + questItem.Name) as Texture2D;
+			break;
+		case ItemID.RabbitFur :
+			questItem.Point = 15;
+			//questItem.Icon = Resources.Load(QUEST_ITEM_PATH + questItem.Name) as Texture2D;
+			break;
+
 		default:break;
 		}
 		

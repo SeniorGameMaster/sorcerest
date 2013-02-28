@@ -20,17 +20,17 @@ public class Weapon : BuffItem {
 	
 	public int MaxDamage {
 		get { return _maxDamage; }	
-		set { _maxDamage = Value; }	
+		set { _maxDamage = Point; }	
 	}
 	
 	public float DamageVariance {
 		get { return _dmgVar; }	
-		set { _dmgVar = Value; }	
+		set { _dmgVar = Point; }	
 	}
 	
 	public float MaxRange {
 		get { return _maxRange; }	
-		set { _maxRange = Value; }	
+		set { _maxRange = Point; }	
 	}
 	
 	public DamageType TypeOfDamage {
@@ -40,7 +40,7 @@ public class Weapon : BuffItem {
 	
 	public override string ToString () {
 		 return Name + "\n" +
-				"Value " + Value + "\n" + 
+				"Value " + Point + "\n" + 
 				"Durability " + CurDurability + "/" + MaxDurability + "\n" +
 				MaxDamage * DamageVariance + " - " + MaxDamage; 
 	}
