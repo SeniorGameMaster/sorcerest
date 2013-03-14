@@ -49,6 +49,9 @@ public class LootingItem : MonoBehaviour {
 	public float maxDistance = 5;		//The max distance the player can loot object
 	public bool inUse = false;
 	public List<Item> loot = new List<Item>();
+	public bool setDestroy = false;
+	public static float defaultLifeTimer = 120;
+	private float _lifeTimer = 0;
 	
 	public ItemID[] dropID;
 	public ItemTypes[] dropType;
@@ -85,6 +88,11 @@ public class LootingItem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		_lifeTimer += Time.deltaTime;
+		
+		if(setDestroy && (_lifeTimer > defaultLifeTimer) && state == State.close)
+			DestroyLoot();
+		
 		if(!inUse)
 			return;
 		
@@ -300,6 +308,7 @@ public class LootingItem : MonoBehaviour {
 		switch(type) {
 		case Type.treasurebox:
 			animation.Play("GoodClose");
+			
 			yield return new WaitForSeconds(animation["GoodClose"].length);
 			break;
 		case Type.monster:
@@ -317,7 +326,12 @@ public class LootingItem : MonoBehaviour {
 		state = LootingItem.State.close;
 		
 		if(loot.Count == 0)
-			Destroy(gameObject);
+			DestroyLoot();
+	}
+	
+	private void DestroyLoot() {
+		loot = null;
+		Destroy(gameObject);
 	}
 	
 	//Close the object in any situation

@@ -37,24 +37,29 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Necromancer GUI\GUISystemButton.cs" />
      <Compile Include="Assets\Necromancer GUI\GUITestScript.cs" />
+     <Compile Include="Assets\Script\AdvancedMovement.cs" />
+     <Compile Include="Assets\Script\Backup\AdvanceMovementTemp.cs" />
      <Compile Include="Assets\Script\Backup\Chest.cs" />
      <Compile Include="Assets\Script\Backup\EnemyAIBackup.cs" />
      <Compile Include="Assets\Script\Backup\ItemDrops.cs" />
+     <Compile Include="Assets\Script\Backup\TargettingBackup.cs" />
      <Compile Include="Assets\Script\CSMessenger Extended\Callback.cs" />
      <Compile Include="Assets\Script\CSMessenger Extended\Messenger.cs" />
      <Compile Include="Assets\Script\Character Classes\Attribute.cs" />
      <Compile Include="Assets\Script\Character Classes\BaseCharacter.cs" />
      <Compile Include="Assets\Script\Character Classes\BaseStat.cs" />
      <Compile Include="Assets\Script\Character Classes\CharacterGenerator.cs" />
+     <Compile Include="Assets\Script\Character Classes\GameMaster.cs" />
+     <Compile Include="Assets\Script\Character Classes\GameSettings.cs" />
      <Compile Include="Assets\Script\Character Classes\ModifiedStat.cs" />
      <Compile Include="Assets\Script\Character Classes\PlayerCharacter.cs" />
      <Compile Include="Assets\Script\Character Classes\Skill.cs" />
@@ -63,8 +68,10 @@
      <Compile Include="Assets\Script\EnemyAttack.cs" />
      <Compile Include="Assets\Script\EnemyHealth.cs" />
      <Compile Include="Assets\Script\EnumClass.cs" />
+     <Compile Include="Assets\Script\ForestasiaCamera.cs" />
      <Compile Include="Assets\Script\HUD Classes\MyGUI.cs" />
      <Compile Include="Assets\Script\HUD Classes\PlayerGUI.cs" />
+     <Compile Include="Assets\Script\HUD Classes\VitalBar.cs" />
      <Compile Include="Assets\Script\Item Classes\Armor.cs" />
      <Compile Include="Assets\Script\Item Classes\BuffItem.cs" />
      <Compile Include="Assets\Script\Item Classes\Clothing.cs" />
@@ -74,6 +81,12 @@
      <Compile Include="Assets\Script\Item Classes\Jewelry.cs" />
      <Compile Include="Assets\Script\Item Classes\Weapon.cs" />
      <Compile Include="Assets\Script\LootingItem.cs" />
+     <Compile Include="Assets\Script\MainMenu.cs" />
+     <Compile Include="Assets\Script\Mob\AI.cs" />
+     <Compile Include="Assets\Script\Mob\Mob.cs" />
+     <Compile Include="Assets\Script\Mob\MobGenerator.cs" />
+     <Compile Include="Assets\Script\Mob\SpawnPoint.cs" />
+     <Compile Include="Assets\Script\Movement.cs" />
      <Compile Include="Assets\Script\NotUse\ExitButton.cs" />
      <Compile Include="Assets\Script\NotUse\Main.cs" />
      <Compile Include="Assets\Script\NotUse\Mainmenu.cs" />
@@ -85,20 +98,27 @@
      <Compile Include="Assets\Script\PlayerInput.cs" />
      <Compile Include="Assets\Script\Quest Classes\AbstractQuest.cs" />
      <Compile Include="Assets\Script\Quest Classes\BootsQuest.cs" />
+     <Compile Include="Assets\Script\Quest Classes\EncycopediaData.cs" />
      <Compile Include="Assets\Script\Quest Classes\LegendaryQuest.cs" />
      <Compile Include="Assets\Script\Quest Classes\ObjectInteraction.cs" />
      <Compile Include="Assets\Script\Quest Classes\OwlQuest.cs" />
      <Compile Include="Assets\Script\Quest Classes\RecipeData.cs" />
      <Compile Include="Assets\Script\Quest Classes\WandQuest.cs" />
+     <Compile Include="Assets\Script\TargetMob.cs" />
      <Compile Include="Assets\Script\Targetting.cs" />
      <Compile Include="Assets\Script\TotemScript.cs" />
      <Compile Include="Assets\Script\TreeManager.cs" />
      <Compile Include="Assets\Script\Water.cs" />
+     <Compile Include="Assets\TeleportKit\Example\Character Controllers 1\Sources\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\TeleportKit\Textures\FX\Example\GemSpawner.cs" />
+     <None Include="Assets\TeleportKit\Textures\FX\diamond shader.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\TeleportKit\TutoTelepKit.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Necromancer GUI\Kingthings.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\Necromancer GUI\Readme.txt" />
+     <None Include="Assets\Standard Assets\Gem Rendering\diamond shader.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

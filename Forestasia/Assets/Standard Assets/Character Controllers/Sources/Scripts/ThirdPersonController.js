@@ -1,6 +1,6 @@
 
 // Require a character controller to be attached to the same game object
-//@script RequireComponent(CharacterController)
+@script RequireComponent(CharacterController)
 
 public var idleAnimation : AnimationClip;
 public var walkAnimation : AnimationClip;
@@ -207,7 +207,7 @@ function UpdateSmoothedMovementDirection ()
 		}
 		
 		moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
-
+		
 		// Reset walk time start when we slow down
 		if (moveSpeed < walkSpeed * 0.3)
 			walkTimeStart = Time.time;

@@ -22,12 +22,28 @@ public class ModifiedStat : BaseStat {
 				_modValue += (int)(att.attribute.AdjustedBaseValue * att.ratio);
 	}
 	
+	//Overide the function in basestat
 	public new int AdjustedBaseValue {
 		get { return BaseValue + BuffValue + _modValue;}
 	}
 	
 	public void Update() {
 		CalculateModValue();	
+	}
+	
+	public string GetModifyingAttributesString() {
+		string temp = "";
+		
+		for (int cnt = 0; cnt < _mods.Count; cnt++) {
+			temp += _mods[cnt].attribute.Name;
+			temp += "_";
+			temp += _mods[cnt].ratio;
+			
+			if(cnt < _mods.Count - 1) 
+				temp += "|";
+		}
+		
+		return temp;
 	}
 }
 

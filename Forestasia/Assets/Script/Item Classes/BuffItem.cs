@@ -18,7 +18,7 @@ public class BuffItem : Item {
 	
 	public void AddBuff(BaseStat stat, int mod) { 
 		try {
-			buffs.Add(stat.Name, mod);	
+//			buffs.Add(stat.Name, mod);	
 		}
 		catch (Exception e) {
 			Debug.LogWarning(e.ToString());	
@@ -26,7 +26,7 @@ public class BuffItem : Item {
 	}
 	
 	public void RemoveBuff(BaseStat stat) {
-		buffs.Remove(stat.Name);
+//		buffs.Remove(stat.Name);
 	}
 	
 	public int BuffCount() {

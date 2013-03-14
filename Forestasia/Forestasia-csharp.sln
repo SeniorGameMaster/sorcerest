@@ -5,6 +5,8 @@ Project("{09C05159-DADA-3BAE-7AB4-738CB3E091B2}") = "Forestasia", "Assembly-CSha
 EndProject
 Project("{09C05159-DADA-3BAE-7AB4-738CB3E091B2}") = "Forestasia", "Assembly-CSharp-vs.csproj", "{84684325-3308-B582-8DF1-8E092FB23F6D}"
 EndProject
+Project("{09C05159-DADA-3BAE-7AB4-738CB3E091B2}") = "Forestasia", "Assembly-CSharp-Editor-vs.csproj", "{44541544-FA25-9660-4C83-A14FFD6CBC1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,14 +21,17 @@ Global
 		{84684325-3308-B582-8DF1-8E092FB23F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84684325-3308-B582-8DF1-8E092FB23F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84684325-3308-B582-8DF1-8E092FB23F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44541544-FA25-9660-4C83-A14FFD6CBC1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44541544-FA25-9660-4C83-A14FFD6CBC1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44541544-FA25-9660-4C83-A14FFD6CBC1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44541544-FA25-9660-4C83-A14FFD6CBC1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-<<<<<<< HEAD
-																																																																																																																																																																				GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																																																																																																																																																									GlobalSection(MonoDevelopProperties) = preSolution
 =======
-																																																																																																																																																																																								GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																																																																																																																							GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> 326a70d6f51d97e9953a518d626f6b77fa60cf00
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0

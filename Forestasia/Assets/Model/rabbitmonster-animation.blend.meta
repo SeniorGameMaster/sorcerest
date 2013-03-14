@@ -73,8 +73,8 @@ ModelImporter:
     400066: upper_arm_R
     4300000: Circle
     7400000: Default Take
-    7400002: Attack
-    7400004: WalkCycle
+    7400002: attack
+    7400004: walk
     9500000: //RootNode
     11100000: //RootNode
     13700000: Circle
@@ -89,31 +89,9 @@ ModelImporter:
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
-    animationWrapMode: 2
+    animationWrapMode: 0
     clipAnimations:
-    - name: Default Take
-      takeName: Default Take
-      firstFrame: 0
-      lastFrame: 49
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      keepAdditionalBonesAnimation: 1
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      skeletonMaskElements: []
-    - name: Attack
+    - name: attack
       takeName: Attack
       firstFrame: 0
       lastFrame: 14
@@ -135,7 +113,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       skeletonMaskElements: []
-    - name: WalkCycle
+    - name: walk
       takeName: WalkCycle
       firstFrame: 0
       lastFrame: 50

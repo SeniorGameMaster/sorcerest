@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
 using System;				//added to access the enum class
+
 public class BaseCharacter : MonoBehaviour {
-	private string _name;
+	public string name;
+	//private string _name;
 	private int _level;
 	private uint _freeExp;
 	
@@ -10,10 +12,17 @@ public class BaseCharacter : MonoBehaviour {
 	private Vital[] _vital;
 	private Skill[] _skill;
 	
-	public void Awake() {
-		_name = string.Empty;
+	public float meeleeAttackTimer = GameSettings.BASE_MELEE_ATTACK_TIMER;
+	public float meeleeAttackSpeed = GameSettings.BASE_MELEE_ATTACK_SPEED;	
+	public float meeleeResetTimer = 0f;
+	
+	public bool _inCombat;
+	
+	public virtual void Awake() {
+//		_name = string.Empty;
 		_level = 0;
 		_freeExp = 0;
+		_inCombat = false;
 		
 		_primaryAttribute = new Attribute[Enum.GetValues(typeof(AttributeName)).Length];
 		_vital = new Vital[Enum.GetValues(typeof(VitalName)).Length];
@@ -33,11 +42,11 @@ public class BaseCharacter : MonoBehaviour {
 	void Update () {
 	
 	}
-	
+	/*
 	public string Name {
 		get{ return _name; }
 		set{ _name = value; }
-	}
+	}*/
 	
 	public int Level {
 		get{ return _level; }
@@ -63,6 +72,7 @@ public class BaseCharacter : MonoBehaviour {
 	private void SetupPrimaryAttributes() {
 		for(int cnt = 0; cnt < _primaryAttribute.Length; cnt++) {
 			_primaryAttribute[cnt] = new Attribute();	
+			_primaryAttribute[cnt].Name = ((AttributeName)cnt).ToString();
 		}
 	}
 	
@@ -156,5 +166,16 @@ public class BaseCharacter : MonoBehaviour {
 		
 		for(int cnt = 0; cnt < _skill.Length; cnt++)
 			_skill[cnt].Update();
+		
+		
+	}
+	
+	public void CalculateMeleeAttackSpeed() {
+		
+	}
+	
+	public bool InCombat {
+		get { return _inCombat; }
+		set { _inCombat = value; }
 	}
 }

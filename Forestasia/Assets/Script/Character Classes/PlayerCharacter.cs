@@ -1,3 +1,5 @@
+using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerCharacter : BaseCharacter {
@@ -5,6 +7,44 @@ public class PlayerCharacter : BaseCharacter {
 	private static List<Item> _inventory = new List<Item>();
 	private static List<Item> _alchemy = new List<Item>();
 	private static List<Item> _alchemyResult = new List<Item>();
+	
+	public bool initialized = false;
+	
+	private static PlayerCharacter instance = null;
+	public static PlayerCharacter Instance {
+		get {	
+			if(instance == null) {	
+				Debug.Log("Instancing a new pc");
+				GameObject go = Instantiate( Resources.Load("Player Character Prefab"),new Vector3(0,0,0),Quaternion.identity) as GameObject;
+				PlayerCharacter temp = go.GetComponent<PlayerCharacter>();
+				
+				if(temp == null)
+					Debug.LogError("Player Prefab doesn't contain script");
+				
+				instance = go.GetComponent<PlayerCharacter>();
+				go.name = "pc";
+				go.tag = "Player";	
+			}
+			
+			return instance;
+		}
+	}
+	
+	public void Initialize() {
+		if(!initialized)
+			LoadCharacter();
+	}
+	
+	new void Awake() {
+		base.Awake();
+		
+		instance = this; 
+	}
+	
+	public void LoadCharacter() {
+		
+		initialized = true;
+	}
 	
 	public static List<Item> Inventory {
 		get{ return _inventory; }
@@ -82,11 +122,7 @@ public class PlayerCharacter : BaseCharacter {
 		return index;
 	}
 	
-	
-	
 	void Update() {
-		
-		
-		//Messenger<int, int>.Broadcast("player health update", 80, 100, MessengerMode.DONT_REQUIRE_LISTENER);	
+		Messenger<int, int>.Broadcast("player health update", 80, 100, MessengerMode.DONT_REQUIRE_LISTENER);			
 	}
 }

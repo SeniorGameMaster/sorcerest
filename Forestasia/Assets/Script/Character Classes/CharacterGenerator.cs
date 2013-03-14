@@ -20,19 +20,35 @@ public class CharacterGenerator : MonoBehaviour {
 	private int StatStartingPos = 40;
 	
 	public GUIStyle myStyle;
+	//_toon ==> PlayerCharacter.Instance
+	//public GameObject playerPrefab;
+	
+	public float delayTimer = .1f;
+	private float _lastClick = 0;
+	
+	void Awake() {
+		
+		PlayerCharacter.Instance.Initialize();
+	}
+	
 	// Use this for initialization
 	void Start () {
-		_toon = new PlayerCharacter();	
-		_toon.Awake();
+		
+		//GameObject pc = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		
+	//	pc.name = "pc";
+	
+		//_toon = pc.GetComponent<PlayerCharacter>();
 		
 		pointsLeft = STARTING_POINTS;
 		
 		for(int cnt = 0; cnt < Enum.GetValues(typeof(AttributeName)).Length; cnt++) {
-			_toon.GetPrimaryAttribute(cnt).BaseValue = STARTING_VALUE;
+			//_toon.GetPrimaryAttribute(cnt).BaseValue = STARTING_VALUE;
+			PlayerCharacter.Instance.GetPrimaryAttribute(cnt).BaseValue = STARTING_VALUE;
 			pointsLeft -= (STARTING_VALUE - MIN_STARTING_ATTRIBUTE_VALUE);
 		}
 		
-		_toon.StatUpdate();
+		PlayerCharacter.Instance.StatUpdate();
 	}
 	
 	// Update is called once per frame
@@ -41,18 +57,24 @@ public class CharacterGenerator : MonoBehaviour {
 	}
 	
 	void OnGUI() {
+		
 		DisplayName();
 		DisplayPointLeft();
 		DisplayAttributes();
 		DisplayVitals();
 		DisplaySkills();
 		
+		if(PlayerCharacter.Instance.name == "" || pointsLeft > 0)
+			DisplayCreateLabel();
+		else
+			DisplayCreateButton();
 		
 	}
 	
 	private void DisplayName() {
 		GUI.Label(new Rect(10, 10, 50, 25), "Name:");	
-		_toon.Name = GUI.TextField(new Rect(65, 10, 100, 25), _toon.Name);
+		//_toon.name = GUI.TextField(new Rect(65, 10, 100, 25), _toon.name);
+		PlayerCharacter.Instance.name = GUI.TextField(new Rect(65, 10, 100, 25), PlayerCharacter.Instance.name);
 	}
 	
 	private void DisplayAttributes() {
@@ -66,28 +88,34 @@ public class CharacterGenerator : MonoBehaviour {
 								StatStartingPos + (cnt * LINE_HEIGHT),  	 //y
 								BASEVALUE_LABEL_WIDTH,                 		 //width
 								LINE_HEIGHT                             	 //height
-								),_toon.GetPrimaryAttribute(cnt).AdjustedBaseValue.ToString());
+								),PlayerCharacter.Instance.GetPrimaryAttribute(cnt).AdjustedBaseValue.ToString());
 			
-			if(GUI.Button(new Rect( OFFSET + STAT_LABEL_WIDTH + BASEVALUE_LABEL_WIDTH, //x
+			if(GUI.RepeatButton(new Rect( OFFSET + STAT_LABEL_WIDTH + BASEVALUE_LABEL_WIDTH, //x
 									StatStartingPos + (cnt * BUITTON_HEIGHT),                       //y
 									BUITTON_WIDTH,                                     //width
 									BUITTON_HEIGHT                                     //height
 									), "-")) {
-				if(_toon.GetPrimaryAttribute(cnt).BaseValue > MIN_STARTING_ATTRIBUTE_VALUE) {
-					_toon.GetPrimaryAttribute(cnt).BaseValue--	;	
-					pointsLeft++;
-					_toon.StatUpdate();
+				if(Time.time - _lastClick > delayTimer) {
+					if(PlayerCharacter.Instance.GetPrimaryAttribute(cnt).BaseValue > MIN_STARTING_ATTRIBUTE_VALUE) {
+						PlayerCharacter.Instance.GetPrimaryAttribute(cnt).BaseValue--	;	
+						pointsLeft++;
+						PlayerCharacter.Instance.StatUpdate();
+					}
+					_lastClick = Time.time;
 				}
 			}
 			
-			if(GUI.Button(new Rect( OFFSET + STAT_LABEL_WIDTH + BASEVALUE_LABEL_WIDTH + BUITTON_WIDTH , //x
+			if(GUI.RepeatButton(new Rect( OFFSET + STAT_LABEL_WIDTH + BASEVALUE_LABEL_WIDTH + BUITTON_WIDTH , //x
 									StatStartingPos + (cnt * BUITTON_HEIGHT),                                        //y
 									BUITTON_WIDTH,                                                      //width
 									BUITTON_HEIGHT ), "+")) {	                                        //height
-				if(pointsLeft > 0) {
-					_toon.GetPrimaryAttribute(cnt).BaseValue++;	
-					pointsLeft--;
-					_toon.StatUpdate();
+				if(Time.time - _lastClick > delayTimer) {
+					if(pointsLeft > 0) {
+						PlayerCharacter.Instance.GetPrimaryAttribute(cnt).BaseValue++;	
+						pointsLeft--;
+						PlayerCharacter.Instance.StatUpdate();
+					}
+				_lastClick = Time.time;
 				}
 			}
 		}
@@ -105,7 +133,7 @@ public class CharacterGenerator : MonoBehaviour {
 								StatStartingPos + ((cnt + 7) * LINE_HEIGHT), 			//y
 								BASEVALUE_LABEL_WIDTH,                             		//width
 								LINE_HEIGHT                                          	//height
-								),_toon.GetVital(cnt).AdjustedBaseValue.ToString());
+								),PlayerCharacter.Instance.GetVital(cnt).AdjustedBaseValue.ToString());
 		}
 	}
 	
@@ -121,11 +149,45 @@ public class CharacterGenerator : MonoBehaviour {
 								StatStartingPos + (cnt * LINE_HEIGHT),                                                          //y
 								BASEVALUE_LABEL_WIDTH,                                                                                             //width
 								LINE_HEIGHT)                                                                                    //height
-								,_toon.GetSkill(cnt).AdjustedBaseValue.ToString());
+								,PlayerCharacter.Instance.GetSkill(cnt).AdjustedBaseValue.ToString());
 		}
 	}
 	
 	private void DisplayPointLeft() {
 		GUI.Label(new Rect(250, 10, 100, 25), "Points Left: " + pointsLeft.ToString());	
+	}
+	
+	private void DisplayCreateLabel() {
+		GUI.Label(new Rect( Screen.width/2 - 50,
+							 StatStartingPos + (10 * LINE_HEIGHT),
+							 100, 
+							 LINE_HEIGHT
+					), "Fill Name", "Button");
+	}
+	
+	private void DisplayCreateButton() {
+		if(GUI.Button(new Rect( Screen.width/2 - 50,
+							 StatStartingPos + (10 * LINE_HEIGHT),
+							 100, 
+							 LINE_HEIGHT
+					), "Create"))
+		{
+			//Saving Character
+			GameSettings gsScript = GameObject.Find("__GameSettings").GetComponent<GameSettings>(); 			
+			//change the cur value of vitals to the max modified value of that vital
+			UpdateCurVitalValues();
+			
+			gsScript.SaveCharacterData();
+			
+			Application.LoadLevel("testScene"); //can be index of scene
+			
+		}
+	} 
+	
+	private void UpdateCurVitalValues() {
+		for(int cnt = 0; cnt < Enum.GetValues(typeof(VitalName)).Length; cnt++) {
+			PlayerCharacter.Instance.GetVital(cnt).CurValue = PlayerCharacter.Instance.GetVital(cnt).AdjustedBaseValue;
+			
+		}
 	}
 }

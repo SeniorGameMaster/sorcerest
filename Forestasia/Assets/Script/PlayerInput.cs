@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(AdvancedMovement))]
 public class PlayerInput : MonoBehaviour {
 
 	// Use this for initialization
@@ -10,6 +11,14 @@ public class PlayerInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Input.GetButtonUp("Cast")) {
+			SendMessage("PlayMeleeAttack");
+				
+			/*
+			GameObject go = GameObject.FindGameObjectWithTag("Player");
+			GameSettings.SavePlayerPosition(go.transform.position);*/
+		}	
+		
 		if(Input.GetButtonUp("Toggle Inventory")) {
 			Messenger.Broadcast("ToggleInventory");
 		}
@@ -22,8 +31,7 @@ public class PlayerInput : MonoBehaviour {
 			Messenger.Broadcast("ToggleRecipe");
 		}
 		
-		/*
-		if(Input.GetMouseButtonDown("Move Forward")) {
+		if(Input.GetButton("Move Forward")) {
 			if(Input.GetAxis("Move Forward") > 0) {	
 				SendMessage("MoveMeForward", AdvancedMovement.Forward.forward);
 			}
@@ -36,8 +44,8 @@ public class PlayerInput : MonoBehaviour {
 			SendMessage("MoveMeForward", AdvancedMovement.Forward.none);
 		}
 		
-		if(Input.GetMouseButtonDown("Rotat Player")) {
-			if(Input.GetAxis("Rotat Player") > 0) {	
+		if(Input.GetButton("Rotate Player")) {
+			if(Input.GetAxis("Rotate Player") > 0) {	
 				SendMessage("RotateMe", AdvancedMovement.Turn.right);
 			}
 			else {
@@ -45,12 +53,12 @@ public class PlayerInput : MonoBehaviour {
 			}
 		}
 		
-		if(Input.GetButtonUp("Rotat Player")) {
+		if(Input.GetButtonUp("Rotate Player")) {
 			SendMessage("RotateMe", AdvancedMovement.Turn.none);
 		}
 		
 		
-		if(Input.GetMouseButtonDown("Strafe")) {
+		if(Input.GetButton("Strafe")) {
 			if(Input.GetAxis("Strafe") > 0) {	
 				SendMessage("Strafe", AdvancedMovement.Turn.right);
 			}
@@ -64,12 +72,12 @@ public class PlayerInput : MonoBehaviour {
 		}
 		
 		
-		if(Input.GetButtonDown("Jump")) {
+		if(Input.GetButton("Jump")) {
 			SendMessage("JumpUp");
 		}
 		
 		if(Input.GetButtonDown("Run")) {
 			SendMessage("ToggleRun");
-		}*/
+		}
 	}
 }

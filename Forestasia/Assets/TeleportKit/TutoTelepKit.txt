@@ -1,0 +1,20 @@
+Utilisation du pack téléportation :
+
+- Créez une scène
+- Ajouter les téléporteurs (ils vont par paire)
+- Ajouter un personnage joueur
+- Le personnage joueur doit avoir le script "TeleportMe" sur lui.
+- Vous devez paramétrer les variables :
+	* TelepSound est le son qui dois être joué lors de la téléportation
+	* SpawnPoint1_1 est le point d'apparition du téléporteur 1_1 (l'endroit ou le personnage apparait après passage dans le téléporteur 1_2)
+	* Pour les autres SpawnPoint c'est la même chose.
+Pour retrouver les spawn points associés aux téléporteurs, déployer tous les objets du téléporteur.
+
+- N'oubliez pas de taguer vos téléporteurs !
+	* Pour les téléporteurs au sol, l'objet invisible/trigger à taguer sont les "telep2_1" et "telep2_2"
+	* Pour les grands téléporteurs il faut taguer la "porte bleue"
+Taguer les objets en "teleporter1_1", "teleporter1_2","teleporter2_1","teleporter2_2" en fonction du téléporteur associé. Attention de bien respecter l'orthographe des tags !
+
+SI VOUS AVEZ BESOIN DE PLUS D INFORMATIONS OU SI VOUS AVEZ DES DIFFICULTEES, VOUS TROUVEREZ DANS LE PACK UNE SCENE D EXEMPLE ENTIEREMENT OPERATIONELLE ET V DANS LE DOSSIER EXAMPLE. VOUS POUVEZ AUSSI RETROUVER MES TUTOS VIDEOS SUR FORMATION FACILE. 
+
+http://formation-facile.fr

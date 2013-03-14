@@ -4,15 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Targetting : MonoBehaviour {
-	public Texture2D selectTexture2D,deselectTexture2D;
 	public List<Transform> targets;
 	public Transform selectedTarget;
 	//public bool lockTarget;
-	public int maxTargetDistance;
-	public float rotationSpeed = 0.5f;
-	
-	private Transform myTransform;
-	private Vector3 curTarget,curTransform;
+
+	private Transform myTransform;	
 	
 	// Use this for initialization
 	void Start () {
@@ -36,8 +32,7 @@ public class Targetting : MonoBehaviour {
 	
 	public void ClearTarget() {
 		 
-		targets.RemoveRange(0,targets.Count);	
-		
+		targets.RemoveRange(0,targets.Count);		
 	}
 	
 	private void SortTargetByDistance() {
@@ -49,7 +44,6 @@ public class Targetting : MonoBehaviour {
 	private void TargetEnemy() {
 		if(selectedTarget == null) {
 			SortTargetByDistance();
-			
 			selectedTarget = targets[0];
 		}
 		else {
@@ -68,50 +62,29 @@ public class Targetting : MonoBehaviour {
 	}
 	
 	private void SelectTarget() {
-		selectedTarget.GetComponent<EnemyHealth>().isSelected = true;
+		//selectedTarget.GetComponent<EnemyHealth>().isSelected = true;
 		
-		selectedTarget.renderer.material.SetTexture("_LightMap",selectTexture2D);
+//		selectedTarget.renderer.material.color = Color.gray;
 		
-		PlayerAttack pa = (PlayerAttack)GetComponent("PlayerAttack");
+//		PlayerAttack pa = (PlayerAttack)GetComponent("PlayerAttack");
 		
-		pa.target = selectedTarget.gameObject;
+//		pa.target = selectedTarget.gameObject;
 	}
 	
 	private void DeselectTarget() {
-		selectedTarget.GetComponent<EnemyHealth>().isSelected = false;
-		selectedTarget.renderer.material.SetTexture("_LightMap",deselectTexture2D);
+		//selectedTarget.GetComponent<EnemyHealth>().isSelected = false;
+		//selectedTarget.renderer.material.color = Color.white;
 		selectedTarget = null;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Tab)){
-			ClearTarget();
-			AddAllEnemies();
+			//ClearTarget();
+			//AddAllEnemies();
 			TargetEnemy();		
 		}
-		/*
-		if(Input.GetKeyDown(KeyCode.G)){
-			lockTarget = !lockTarget;
-		}
-		
-		if(lockTarget)
-			LockTarget();
-			*/
 	}
 	
-	private void LockTarget() {
-		if(Vector3.Distance(selectedTarget.position, myTransform.position) < maxTargetDistance) {
-				Debug.Log("lOCKING");
-				//Rotation to target
-				curTarget = selectedTarget.position;
-				curTransform = myTransform.position;
-				curTarget.z = 0;
-				curTransform.z = 0;
-				curTarget.y= 0;
-				curTransform.y = 0;
-				//myTransform.LookAt(selectedTarget);
-				myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(curTarget - curTransform),rotationSpeed);
-		}
-	}
+
 }

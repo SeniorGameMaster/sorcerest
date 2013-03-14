@@ -97,15 +97,19 @@ public class PlayerGUI : MonoBehaviour {
 	WandQuest wandQuest = new WandQuest();
 	
 	/****************************************************/
-	/* Recipe and Mixing Ingredient window variables */
+	/* Encycopedia window variables */
 	/***************************************************/
-	private bool _displayRecipeWindow = false;
-	private const int RECIPE_WINDOW_ID = 4;
-	private Rect _recipeWindowRect = new Rect(Screen.width - 300, Screen.height/2, 250, 350);	
-	private Vector2 recipeScroll;
+	private bool _displayEncycopediaWindow = false;
+	private const int ENCYCOPEDIA_WINDOW_ID = 4;
+	private Rect _encycopediaWindowRect = new Rect(Screen.width - 300, Screen.height/2, 250, 350);	
+	private Vector2 _encycopediaScroll;
+	private int _displayData = 0; //0 is recipe, 1 is monsterData
 	RecipeData recipeData = new RecipeData();
+	EncycopediaData encycopediaData = new EncycopediaData();
 	
-	
+	/****************************************************/
+	/* Alchemy Ingredient window variables */
+	/***************************************************/
 	private bool _displayAlchemyWindow = false;
 	private const int ALCHEMY_WINDOW_ID = 5;
 	private Rect _alchemyWindowRect = new Rect(Screen.width/2 - 100, Screen.height/2 - 200, 300, 400);	
@@ -203,8 +207,8 @@ public class PlayerGUI : MonoBehaviour {
 		if(_displayQuestlogWindow)
 			_questlogWindowRect = GUI.Window(QUESTLOG_WINDOW_ID, _questlogWindowRect, QuestlogWindow, "Quest Log");
 		
-		if(_displayRecipeWindow)
-			_recipeWindowRect = GUI.Window(RECIPE_WINDOW_ID, _recipeWindowRect, RecipeWindow, "Recipe");
+		if(_displayEncycopediaWindow)
+			_encycopediaWindowRect = GUI.Window(ENCYCOPEDIA_WINDOW_ID, _encycopediaWindowRect, RecipeWindow, "Encycopedia");
 		
 		if(_displayAlchemyWindow)
 				_alchemyWindowRect = GUI.Window(ALCHEMY_WINDOW_ID, _alchemyWindowRect, AlchemyWindow, "Alchemy");
@@ -816,7 +820,7 @@ public class PlayerGUI : MonoBehaviour {
 	/****************************************************/
 	public void ToggleRecipeWindow() {
 		
-		_displayRecipeWindow = !_displayRecipeWindow;	
+		_displayEncycopediaWindow = !_displayEncycopediaWindow;	
 	}
 	
 	private string recipeParseStar(string word) {
@@ -828,49 +832,91 @@ public class PlayerGUI : MonoBehaviour {
 	}
 	
 	private void RecipeWindow(int id) {
-		int RecipeNumber = 1;
-		bool showRecipe;
-		string unlockRecipe;
-		recipeScroll = GUILayout.BeginScrollView(recipeScroll, GUILayout.Width(330), GUILayout.Height(270));
 		
-		for(int recipeIndex = 0; recipeIndex < recipeData.getRecipeLength(); recipeIndex++) {
+		if(_displayData != 0) {
+			if(GUI.Button(new Rect(20,25,90,20),"Recipe"))
+				_displayData = 0;
+		}
+		else { 
+			GUI.Label(new Rect(20,25,90,20),"Recipe","Box");
+		}
+		
+		if(_displayData != 1){
+			if(GUI.Button(new Rect(140,25,90,20),"MonsterData"))
+				_displayData = 1;
+		}
+		else {
+			GUI.Label(new Rect(140,25,90,20),"MonsterData","Box");
+		}
+
+		GUILayout.Label("");
+	
+		_encycopediaScroll = GUILayout.BeginScrollView(_encycopediaScroll, GUILayout.Width(230), GUILayout.Height(300));
+		
+		if(_displayData == 0) {
+			int RecipeNumber = 1;
+			bool showRecipe;
+			string unlockRecipe;
 			
-			if(recipeData.getUnlockRecipe(recipeIndex))
-				unlockRecipe = recipeData.getItemResult(recipeIndex).ToString();
-			else
-				unlockRecipe = "Unknown";
-					
-			showRecipe = recipeData.getShowRecipe(recipeIndex);
-			showRecipe = GUILayout.Toggle(showRecipe, " " + RecipeNumber + ". " + unlockRecipe,GUILayout.Width(300.0f));
-			recipeData.setShowRecipe(recipeIndex,showRecipe);
-			
-			
+			for(int recipeIndex = 0; recipeIndex < recipeData.getRecipeLength(); recipeIndex++) {
 				
-			if(recipeData.getShowRecipe(recipeIndex)) {
-				for (int ingreIndex = 0; ingreIndex < recipeData.getIngredientLegth(recipeIndex); ingreIndex++) {
-					if(recipeData.getUnlockRecipe(recipeIndex))
-						GUILayout.Label("         "+recipeData.getItemIngredient(recipeIndex,ingreIndex).ToString() + " * " + recipeData.getIngredientAmount(recipeIndex,ingreIndex));
+				if(recipeData.getUnlockRecipe(recipeIndex))
+					unlockRecipe = recipeData.getItemResult(recipeIndex).ToString();
+				else
+					unlockRecipe = "Unknown";
+						
+				showRecipe = recipeData.getShowRecipe(recipeIndex);
+				showRecipe = GUILayout.Toggle(showRecipe, " " + RecipeNumber + ". " + unlockRecipe,GUILayout.Width(300.0f));
+				recipeData.setShowRecipe(recipeIndex,showRecipe);		
+					
+				if(recipeData.getShowRecipe(recipeIndex)) {
+					for (int ingreIndex = 0; ingreIndex < recipeData.getIngredientLegth(recipeIndex); ingreIndex++) {
+						if(recipeData.getUnlockRecipe(recipeIndex))
+							GUILayout.Label("         "+recipeData.getItemIngredient(recipeIndex,ingreIndex).ToString() + " * " + recipeData.getIngredientAmount(recipeIndex,ingreIndex));
+						else
+							GUILayout.Label("         "+recipeParseStar(recipeData.getItemIngredient(recipeIndex,ingreIndex).ToString()));
+					}				
+				
+				if(_displayAlchemyWindow) {
+					GUILayout.BeginHorizontal();
+						GUILayout.Space(35);
+						
+					if(!recipeData.getUnlockRecipe(recipeIndex))
+						GUILayout.Button("HINT", GUILayout.Width(70), GUILayout.Height(20));
+						
+						GUILayout.Space(30);		
+					GUILayout.EndHorizontal();	
+					}
+				}
+				
+				RecipeNumber++;
+			}	
+		}
+		else if(_displayData == 1) {
+				int EncycopediaNumber = 1;
+				bool showEncycopedia;
+				string unlockEncycopedia;
+			
+				for(int encycopediaIndex = 0; encycopediaIndex < encycopediaData.getEncycopediaLength(); encycopediaIndex++) {
+				
+					if(encycopediaData.getUnlockEncycopedia(encycopediaIndex))
+						unlockEncycopedia = encycopediaData.getEncycopediaID(encycopediaIndex).ToString();
 					else
-						GUILayout.Label("         "+recipeParseStar(recipeData.getItemIngredient(recipeIndex,ingreIndex).ToString()));
-				}
-			
+						unlockEncycopedia = "Unknown";
+							
+					showEncycopedia = encycopediaData.getShowDetail(encycopediaIndex);
+					showEncycopedia = GUILayout.Toggle(showEncycopedia, " " + EncycopediaNumber + ". " + unlockEncycopedia,GUILayout.Width(300.0f));
+					encycopediaData.setShowDetail(encycopediaIndex,showEncycopedia);
 				
-			
-			if(_displayAlchemyWindow) {
-				GUILayout.BeginHorizontal();
-					GUILayout.Space(35);
-					
-				if(!recipeData.getUnlockRecipe(recipeIndex))
-					GUILayout.Button("HINT", GUILayout.Width(70), GUILayout.Height(20));
-					
-					GUILayout.Space(30);		
-				GUILayout.EndHorizontal();	
-				}
+					if(encycopediaData.getShowDetail(encycopediaIndex)) {
+						if(encycopediaData.getUnlockEncycopedia(encycopediaIndex))
+							GUILayout.Label("" + encycopediaData.getDataDescription(encycopediaIndex));
+						else 
+							GUILayout.Label("" + recipeParseStar(encycopediaData.getDataDescription(encycopediaIndex).ToString()));
+					}
+				
+				EncycopediaNumber++;
 			}
-			
-			
-			
-			RecipeNumber++;
 		}
 		
 		GUILayout.EndScrollView();
@@ -882,8 +928,8 @@ public class PlayerGUI : MonoBehaviour {
 	/****************************************************/
 	private void DisplayAlchemy() {
 		_displayAlchemyWindow = true;
-		if(!_displayRecipeWindow)
-			_displayRecipeWindow = !_displayRecipeWindow;
+		if(!_displayEncycopediaWindow)
+			_displayEncycopediaWindow = !_displayEncycopediaWindow;
 	}
 	
 	private void CloseAlchemy() {
