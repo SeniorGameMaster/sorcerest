@@ -40,6 +40,8 @@ public class AdvancedMovement : MonoBehaviour {
 	public float fallTime = .5f;			//the length of time we have to be falling before the system knows its a fall
 	public float jumpHeight = 8;			//the height of character when jumping
 	public float jumpTime = 1.5f;			//the total time when jumping
+	public float delayJumpTime = 2.0f;
+	private float _delayTimer = 0.0f;
 	
 	public CollisionFlags _collisionFlags;	//the collisionFlags we have from the last frame
 	private Vector3 _moveDirection;			//The direction our character is moving
@@ -138,14 +140,18 @@ public class AdvancedMovement : MonoBehaviour {
 				
 			if(_jump) {			//if the user press jump key
 				if(airTime < jumpTime) {			//if we have not already been in the air so long
-					_moveDirection.y += jumpHeight;	
+					_delayTimer += Time.deltaTime;
 					Jump();
-					_jump = false;
+					if(_delayTimer > delayJumpTime) { 
+						_moveDirection.y += jumpHeight;	
+						_jump = false;
+						_delayTimer = 0;
+					}
 				}
 			}
 		} 
 		else {
-						
+					
 			//if we have a collisionFlag and it is Collide Below
 			if((_collisionFlags & CollisionFlags.CollidedBelow) == 0) {
 				airTime += Time.deltaTime;			//increase the air time
@@ -158,7 +164,6 @@ public class AdvancedMovement : MonoBehaviour {
 		}
 		
 		_moveDirection.y -= gravity * Time.deltaTime;		//apply gravity
-		
 		
 		//move the character and store any new CollisionFlags we get
 		_collisionFlags = _controller.Move(_moveDirection * Time.deltaTime);	
@@ -210,9 +215,7 @@ public class AdvancedMovement : MonoBehaviour {
 			return;
 		
 		animation.CrossFade(runAnimName);
-	//	animation.CrossFade("PenguinSpining");	
 		//animation["run"].speed = 1.5f
-		//animation.CrossFade("run");	
 	}
 	
 	public void Side() {
@@ -222,10 +225,9 @@ public class AdvancedMovement : MonoBehaviour {
 	
 	public void Jump() {
 		if(jumpAnimName == "")
-			return;
+			return;	
 		
 		animation.CrossFade(jumpAnimName);
-		//animation.CrossFade("jump");	
 	}
 	
 	public void Fall() {
@@ -244,7 +246,5 @@ public class AdvancedMovement : MonoBehaviour {
 		//animation[meleeAttack.name].speed = animation[meleeAttack.name].length / 2f;
 		
 		animation.Play(meleeAttack.name);
-		
-		//animation[meleeAttack.name].speed = animation[meleeAttack.name].speed * 2f;
 	}
 }
