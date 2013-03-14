@@ -110,7 +110,8 @@ public class AdvancedMovement : MonoBehaviour {
 
 		
 		//if we are on the ground, let us move
-		if(_controller.isGrounded)  {
+		if(_controller.isGrounded)  
+		{
 			//reset the air time if we are on the ground
 			airTime = 0;
 			
@@ -144,8 +145,10 @@ public class AdvancedMovement : MonoBehaviour {
 				}
 			}
 		} 
-		else {
-						
+		else 
+		{
+			
+				/*		
 			//if we have a collisionFlag and it is Collide Below
 			if((_collisionFlags & CollisionFlags.CollidedBelow) == 0) {
 				airTime += Time.deltaTime;			//increase the air time
@@ -154,7 +157,7 @@ public class AdvancedMovement : MonoBehaviour {
 					Fall();	
 				}
 			}
-			
+			*/
 		}
 		
 		_moveDirection.y -= gravity * Time.deltaTime;		//apply gravity
