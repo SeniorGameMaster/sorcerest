@@ -72,7 +72,7 @@ public class PlayerInput : MonoBehaviour {
 		}
 		
 		
-		if(Input.GetButton("Jump")) {
+		if(Input.GetButtonDown("Jump")) {
 			SendMessage("JumpUp");
 		}
 		
