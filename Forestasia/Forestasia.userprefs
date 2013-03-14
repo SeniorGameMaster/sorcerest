@@ -1,6 +1,31 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\AdvancedMovement.cs">
+    <Files>
+      <File FileName="Assets\Script\AdvancedMovement.cs" Line="153" Column="9" />
+      <File FileName="Assets\Script\PlayerInput.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Character Classes\GameSettings.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\ForestasiaCamera.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Character Classes\BaseCharacter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Quest Classes\EncycopediaData.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\EnemyAI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Character Classes\PlayerCharacter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Character Classes\CharacterGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Character Classes\Attribute.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\HUD Classes\VitalBar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Mob\Mob.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\CSMessenger Extended\Messenger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Mob\SpawnPoint.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Mob\AI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\TargetMob.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\HUD Classes\PlayerGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Character Classes\BaseStat.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Character Classes\GameMaster.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\LootingItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\RotateWaterfall.cs" Line="6" Column="23" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

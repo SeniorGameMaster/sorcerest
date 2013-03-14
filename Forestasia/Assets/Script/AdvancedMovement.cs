@@ -151,7 +151,7 @@ public class AdvancedMovement : MonoBehaviour {
 			}
 		} 
 		else {
-					
+			
 			//if we have a collisionFlag and it is Collide Below
 			if((_collisionFlags & CollisionFlags.CollidedBelow) == 0) {
 				airTime += Time.deltaTime;			//increase the air time

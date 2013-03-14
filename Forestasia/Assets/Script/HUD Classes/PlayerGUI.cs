@@ -214,6 +214,7 @@ public class PlayerGUI : MonoBehaviour {
 				_alchemyWindowRect = GUI.Window(ALCHEMY_WINDOW_ID, _alchemyWindowRect, AlchemyWindow, "Alchemy");
 		
 		
+		
 		//DisplaySelectItemAmount();
 		DisplayToolTip();
 	}
@@ -271,12 +272,11 @@ public class PlayerGUI : MonoBehaviour {
 			}
 			GUI.Box(new Rect(5 + _offset + buttonWidth , 5 + (5 * cnt) + (buttonHeight * cnt), _lootWindowWidth - (5 + _offset * 6 + buttonWidth),buttonHeight), lootingItem.loot[cnt].Name + " * " + lootingItem.loot[cnt].CurAmount );
 		}	
-			
-		
-		
+					
 		GUI.EndScrollView();
 		
 		SetToolTip();
+		
 	}
 	
 	private void DisplayLoot() {
@@ -351,23 +351,24 @@ public class PlayerGUI : MonoBehaviour {
 			if(_toolTip != "")
 				_toolTip = "";
 			
-			if(GUI.tooltip != "")
+			if(GUI.tooltip != "") 
 				_toolTip = GUI.tooltip;
 		}
 	}
 	
 	private void DisplayToolTip() {
+		
 		if(!_displaySelectItemAmount) {
 			if(_toolTip != "") {
 				_toolPosX = (int)Input.mousePosition.x;
 				_toolPosY = (int)Input.mousePosition.y;
 				_toolPosY = Screen.height - _toolPosY;
-				
-				GUI.Box (new Rect(_toolPosX, _toolPosY, 200, 100), _toolTip);
 				GUI.depth = 0;
+				GUI.Box (new Rect(_toolPosX, _toolPosY, 200, 100), _toolTip);
 				//GUI.Box (new Rect(Screen.width / 2 - 100, 10, 200, 100), _toolTip);
 			}
 		}
+		
 	}
 	
 	private void addItemFromInventoryToAlchemy(int index) {

@@ -46,6 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\Necromancer GUI\GUISystemButton.cs" />
      <Compile Include="Assets\Necromancer GUI\GUITestScript.cs" />
+     <Compile Include="Assets\RotateWaterfall.cs" />
      <Compile Include="Assets\Script\AdvancedMovement.cs" />
      <Compile Include="Assets\Script\Backup\AdvanceMovementTemp.cs" />
      <Compile Include="Assets\Script\Backup\Chest.cs" />

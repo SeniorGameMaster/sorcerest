@@ -20,27 +20,6 @@ public class LootingItem : MonoBehaviour {
 		require = 3
 	}
 	
-	public enum TreasureID {
-		None = 0,
-		OldbootsBox = 1,
-		FeatherpenBox = 2,
-		ItemBox = 3,
-		LegendaryBox = 4
-	}
-	
-	public enum MonsterID {
-		None = 0,
-		Rabbit = 1,
-		Hedgehog = 2
-	}
-	
-	public enum TreeID {
-		None = 0,
-		Special = 1,
-		Herb = 2,
-		Cactus = 3
-	}
-	
 	//public AudioClip openSound;  		//Open sound
 	//public AudioClip closeSound; 		//Close sound
 	 
@@ -61,10 +40,6 @@ public class LootingItem : MonoBehaviour {
 	public State state; 				//Current state of object
 	public Type type;					//Type of looting item
 	public ItemID[] itemRequire;
-	
-	public TreasureID box;				//TreasureID of Type
-	public MonsterID monster;			//MonsterID of Type
-	public TreeID tree;					//TreeID of Type
 	
 	private Color[] _defautlColors; 	//default color of object
 	private GameObject _player;
@@ -241,56 +216,16 @@ public class LootingItem : MonoBehaviour {
 		//audio.PlayOneShot(openSound);
 		
 		if(!_used) {
-			//ItemTypeClassify();
-
 			for (int i = 0; i < dropID.Length; i++) {
 				
 				if(UnityEngine.Random.Range(0,100) <= dropChance[i])
 					PopulateItem(dropType[i],dropID[i],dropAmount[i]);
-			}
-				
+			}			
 		}
 
 		state = LootingItem.State.open;
 		
 		Messenger.Broadcast("DisplayLoot");
-	}
-	
-	private void ItemTypeClassify() {
-		switch(type) {
-			case Type.treasurebox:
-				
-				switch (box) {
-					case TreasureID.OldbootsBox :
-						//PopulateItem(ItemTypes.Quest,ItemID.OldBoots);
-					break;
-				default:break;
-				}
-				
-				break;
-			
-			case Type.monster:
-				
-				switch (monster) {
-					case MonsterID.Rabbit :
-						//PopulateItem(ItemTypes.Quest,ItemID.RabbitFur);
-					break;
-				default:break;
-				}
-			
-				break;
-			case Type.tree:
-				
-				switch (tree) {
-				case TreeID.Special :
-						//PopulateItem(ItemTypes.Quest,ItemID);
-					break;
-				default:break;
-				}
-			
-				break;
-		default:break;
-		}
 	}
 	
 	private void PopulateItem(ItemTypes itemTypes, ItemID itemID, int amount) {
@@ -345,9 +280,20 @@ public class LootingItem : MonoBehaviour {
 	//HighLight and deHighLight the selected object
 	private void HighLight(bool glow) {
 		if(glow){
-			if(parts.Length > 0)
-			for (int cnt = 0; cnt < _defautlColors.Length; cnt++)
-				parts[cnt].renderer.material.SetColor("_Color", Color.blue);
+			if(parts.Length > 0) {
+				switch(type) {
+					
+				case Type.require:
+					for (int cnt = 0; cnt < _defautlColors.Length; cnt++)
+						parts[cnt].renderer.material.SetColor("_Color", Color.white);
+					break;
+					
+				default:
+				for (int cnt = 0; cnt < _defautlColors.Length; cnt++)
+					parts[cnt].renderer.material.SetColor("_Color", Color.blue);
+					break;
+				}
+			}
 		}
 		else {
 			if(parts.Length > 0) {
