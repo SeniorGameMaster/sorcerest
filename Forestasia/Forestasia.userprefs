@@ -1,26 +1,28 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Quest Classes\BootsQuest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\StorySlide.cs">
     <Files>
+      <File FileName="Assets\Script\StorySlide.cs" Line="25" Column="1" />
       <File FileName="Assets\Script\TargetMob.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Mob\Mob.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Character Classes\PlayerCharacter.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\LootingItem.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Mob\AI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Spellcaster.cs" Line="92" Column="86" />
+      <File FileName="Assets\Script\Spellcaster.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\PlayerInput.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Quest Classes\CheckingQuest.cs" Line="21" Column="35" />
-      <File FileName="Assets\Script\HUD Classes\PlayerGUI.cs" Line="707" Column="30" />
-      <File FileName="Assets\Script\Quest Classes\BootsQuest.cs" Line="65" Column="10" />
-      <File FileName="Assets\Script\Quest Classes\WaterQuest.cs" Line="95" Column="30" />
-      <File FileName="Assets\Script\Quest Classes\AbstractQuest.cs" Line="106" Column="22" />
+      <File FileName="Assets\Script\Quest Classes\CheckingQuest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\HUD Classes\PlayerGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Quest Classes\BootsQuest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Quest Classes\WaterQuest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Quest Classes\AbstractQuest.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Character Classes\GameSettings.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\MainMenu.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Quest Classes\WandQuest.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\PlayerHealth.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Item Classes\Item.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Item Classes\ItemGenerator.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Behavior\Teleporter.cs" Line="19" Column="3" />
+      <File FileName="Assets\Script\Behavior\Teleporter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Teleporter\TeleportKit\Example\Character Controllers 1\Sources\Scripts\ThirdPersonController.js" Line="32" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
