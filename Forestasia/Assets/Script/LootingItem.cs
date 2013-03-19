@@ -29,6 +29,8 @@ public class LootingItem : MonoBehaviour {
 	public bool inUse = false;
 	public List<Item> loot = new List<Item>();
 	public bool setDestroy = false;
+	public bool destroyWhenPickup = false;
+	private bool _hasPick = false;
 	public static float defaultLifeTimer = 120;
 	private float _lifeTimer = 0;
 	
@@ -81,17 +83,18 @@ public class LootingItem : MonoBehaviour {
 	
 	public void OnMouseEnter() {
 		
+		if(_hasPick)
+			return;
+		
 		switch(type) {
 		case Type.treasurebox:
+		case Type.tree:
 				HighLight(true);
 			break;
 		case Type.monster:
-			if(_myTransform.GetComponent<EnemyHealth>().isDead) {
+			if(_myTransform.GetComponent<AI>().isAIDead()) {
 				HighLight(true);
 			}
-			break;
-		case Type.tree:
-				HighLight(true);
 			break;
 		case Type.require:
 			if(checkRequireItem())
@@ -121,17 +124,19 @@ public class LootingItem : MonoBehaviour {
 	
 	public void OnMouseExit() {
 		
+		if(_hasPick)
+			return;
+		
 		switch(type) {
 		case Type.treasurebox:
+		case Type.tree:
 				HighLight(false);
 			break;
 		case Type.monster:
-			if(_myTransform.GetComponent<EnemyHealth>().isDead) {
+			
+			if(_myTransform.GetComponent<AI>().isAIDead()) {
 				HighLight(false);
 			}
-			break;
-		case Type.tree:
-				HighLight(false);
 			break;
 		case Type.require:
 			if(checkRequireItem())
@@ -147,6 +152,9 @@ public class LootingItem : MonoBehaviour {
 		if(go == null)
 			return;
 		
+		if(_hasPick)
+			return;
+		
 		if(Vector3.Distance(_myTransform.position, go.transform.position) > maxDistance && !inUse)
 			return;
 		
@@ -155,7 +163,7 @@ public class LootingItem : MonoBehaviour {
 			OnLooting();
 			break;
 		case Type.monster:
-			if(_myTransform.GetComponent<EnemyHealth>().isDead) {
+			if(_myTransform.GetComponent<AI>().isAIDead()) {
 				OnLooting();
 			}
 			break;
@@ -250,7 +258,7 @@ public class LootingItem : MonoBehaviour {
 			yield return new WaitForSeconds(1);
 			break;
 		case Type.tree:
-			
+			yield return new WaitForSeconds(1);
 			break;
 		default:break;
 		}
@@ -266,7 +274,9 @@ public class LootingItem : MonoBehaviour {
 	
 	private void DestroyLoot() {
 		loot = null;
-		Destroy(gameObject);
+		_hasPick = true;
+		if(!destroyWhenPickup)
+			Destroy(gameObject);
 	}
 	
 	//Close the object in any situation
@@ -282,15 +292,22 @@ public class LootingItem : MonoBehaviour {
 		if(glow){
 			if(parts.Length > 0) {
 				switch(type) {
+				case Type.monster:
+					for (int cnt = 0; cnt < _defautlColors.Length; cnt++)
+						parts[cnt].renderer.material.SetColor("_Color", Color.magenta);
+					break;
 					
 				case Type.require:
 					for (int cnt = 0; cnt < _defautlColors.Length; cnt++)
-						parts[cnt].renderer.material.SetColor("_Color", Color.white);
+						parts[cnt].renderer.material.SetColor("_Color", Color.grey);
 					break;
-					
+				case Type.tree:
+					for (int cnt = 0; cnt < _defautlColors.Length; cnt++)
+						parts[cnt].renderer.material.SetColor("_Color", Color.grey);
+					break;	
 				default:
 				for (int cnt = 0; cnt < _defautlColors.Length; cnt++)
-					parts[cnt].renderer.material.SetColor("_Color", Color.blue);
+					parts[cnt].renderer.material.SetColor("_Color", Color.white);
 					break;
 				}
 			}

@@ -67,7 +67,7 @@ public class TargetMob : MonoBehaviour {
 		}
 	}
 	
-	private void SelectTarget() {
+	public void SelectTarget() {
 		Transform mobName = selectedTarget.FindChild("Name");
 		
 		if(mobName == null) {
@@ -82,7 +82,10 @@ public class TargetMob : MonoBehaviour {
 		Messenger<bool>.Broadcast("show mob vitalbars", true);
 	}
 	
-	private void DeselectTarget() {
+	public void DeselectTarget() {
+		if(selectedTarget == null)
+			return;
+		
 		selectedTarget.FindChild("Name").GetComponent<MeshRenderer>().enabled = false;
 
 		selectedTarget = null;

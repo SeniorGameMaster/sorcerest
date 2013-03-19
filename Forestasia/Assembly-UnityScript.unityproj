@@ -45,17 +45,18 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Necromancer GUI\GUITestScript.js" />
-     <Compile Include="Assets\TeleportKit\Example\Character Controllers 1\Sources\Scripts\CharacterMotor.js" />
-     <Compile Include="Assets\TeleportKit\Example\Character Controllers 1\Sources\Scripts\FPSInputController.js" />
-     <Compile Include="Assets\TeleportKit\Example\Character Controllers 1\Sources\Scripts\PlatformInputController.js" />
-     <Compile Include="Assets\TeleportKit\Example\Character Controllers 1\Sources\Scripts\ThirdPersonCamera.js" />
-     <Compile Include="Assets\TeleportKit\Example\Character Controllers 1\Sources\Scripts\ThirdPersonController.js" />
-     <Compile Include="Assets\TeleportKit\Scripts\TeleportMe.js" />
-     <Compile Include="Assets\TeleportKit\Scripts\rotation.js" />
-     <None Include="Assets\TeleportKit\Textures\FX\diamond shader.shader" />
+     <Compile Include="Assets\Teleporter\TeleportKit\Example\Character Controllers 1\Sources\Scripts\CharacterMotor.js" />
+     <Compile Include="Assets\Teleporter\TeleportKit\Example\Character Controllers 1\Sources\Scripts\FPSInputController.js" />
+     <Compile Include="Assets\Teleporter\TeleportKit\Example\Character Controllers 1\Sources\Scripts\PlatformInputController.js" />
+     <Compile Include="Assets\Teleporter\TeleportKit\Example\Character Controllers 1\Sources\Scripts\ThirdPersonCamera.js" />
+     <Compile Include="Assets\Teleporter\TeleportKit\Example\Character Controllers 1\Sources\Scripts\ThirdPersonController.js" />
+     <Compile Include="Assets\Teleporter\TeleportKit\Scripts\TeleportMe.js" />
+     <Compile Include="Assets\Teleporter\TeleportKit\Scripts\rotation.js" />
+     <None Include="Assets\Teleporter\TeleportKit\Textures\FX\diamond shader.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
-     <None Include="Assets\TeleportKit\TutoTelepKit.txt" />
+     <None Include="Assets\Teleporter\TeleportKit\TutoTelepKit.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Model\blender.crash.txt" />
      <None Include="Assets\Necromancer GUI\Kingthings.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\Necromancer GUI\Readme.txt" />

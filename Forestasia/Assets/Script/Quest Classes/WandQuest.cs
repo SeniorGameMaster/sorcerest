@@ -11,7 +11,8 @@ public class WandQuest : AbstractQuest{
 		_questDialogue = 0;
 		_questDetail = "";
 		_questGoal = "Mixing all ingredient to create wand.";
-		_questItemReward = ItemID.Wand_of_Truth;
+		_questItemReward = ItemID.WandOfTruth;
+		_rewardType = ItemTypes.Legendary;
 		_showQuest = false;
 		
 		_itemGoal = new ItemID[2];

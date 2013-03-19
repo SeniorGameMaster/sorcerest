@@ -7,6 +7,7 @@ public abstract class AbstractQuest {
 	protected string _questDetail;
 	protected string _questGoal;
 	protected ItemID _questItemReward;
+	protected ItemTypes _rewardType;
 	protected bool _showQuest;
 	protected ItemID[] _itemGoal;
 	protected int[] _maxAmount;
@@ -47,6 +48,11 @@ public abstract class AbstractQuest {
 	public ItemID Reward {
 		get { return _questItemReward; }	
 		set { _questItemReward = value; }	
+	}
+	
+	public ItemTypes TypeReward {
+		get { return _rewardType; }	
+		set { _rewardType = value; }	
 	}
 	
 	public bool Showing {	
@@ -101,7 +107,8 @@ public enum QuestID {
 		None = 0,
 		GetAllLegendaryItem = 1,
 		FindBoots = 2,
-		WandOfTruth = 3
+		WandOfTruth = 3,
+		WaterFromCactus = 4
 }
 
 public enum QuestProcess {

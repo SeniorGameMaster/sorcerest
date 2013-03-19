@@ -1,29 +1,26 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\AdvancedMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Quest Classes\BootsQuest.cs">
     <Files>
-      <File FileName="Assets\Script\AdvancedMovement.cs" Line="153" Column="9" />
-      <File FileName="Assets\Script\PlayerInput.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Character Classes\GameSettings.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\ForestasiaCamera.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Character Classes\BaseCharacter.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Quest Classes\EncycopediaData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\EnemyAI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Character Classes\PlayerCharacter.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Character Classes\CharacterGenerator.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Character Classes\Attribute.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\HUD Classes\VitalBar.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Mob\Mob.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\CSMessenger Extended\Messenger.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Mob\SpawnPoint.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\MainMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Mob\AI.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\TargetMob.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\HUD Classes\PlayerGUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Character Classes\BaseStat.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Character Classes\GameMaster.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Mob\Mob.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Character Classes\PlayerCharacter.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\LootingItem.cs" Line="1" Column="1" />
-      <File FileName="Assets\RotateWaterfall.cs" Line="6" Column="23" />
+      <File FileName="Assets\Script\Mob\AI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Spellcaster.cs" Line="92" Column="86" />
+      <File FileName="Assets\Script\PlayerInput.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Quest Classes\CheckingQuest.cs" Line="21" Column="35" />
+      <File FileName="Assets\Script\HUD Classes\PlayerGUI.cs" Line="707" Column="30" />
+      <File FileName="Assets\Script\Quest Classes\BootsQuest.cs" Line="65" Column="10" />
+      <File FileName="Assets\Script\Quest Classes\WaterQuest.cs" Line="95" Column="30" />
+      <File FileName="Assets\Script\Quest Classes\AbstractQuest.cs" Line="106" Column="22" />
+      <File FileName="Assets\Script\Character Classes\GameSettings.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Quest Classes\WandQuest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\PlayerHealth.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Item Classes\Item.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Item Classes\ItemGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Behavior\Teleporter.cs" Line="19" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

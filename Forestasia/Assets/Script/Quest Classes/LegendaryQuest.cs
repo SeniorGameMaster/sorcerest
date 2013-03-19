@@ -16,8 +16,8 @@ public class LegendaryQuest : AbstractQuest{
 		_showQuest = false;
 		
 		_itemGoal = new ItemID[7];
-		_itemGoal[0] = ItemID.Boots_of_Intelligent;
-		_itemGoal[1] = ItemID.Wand_of_Truth;
+		_itemGoal[0] = ItemID.WingsBoots;
+		_itemGoal[1] = ItemID.WandOfTruth;
 		_itemGoal[2] = ItemID.FeatherPen;
 		_itemGoal[3] = ItemID.LightCrystal;
 		_itemGoal[4] = ItemID.MixColor;

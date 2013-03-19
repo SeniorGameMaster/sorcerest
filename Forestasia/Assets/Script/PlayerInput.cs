@@ -11,13 +11,24 @@ public class PlayerInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButtonUp("Cast")) {
-			SendMessage("PlayMeleeAttack");
-				
+		if(Input.GetButtonUp("Attack")) {
+			
+			//SendMessage("Casting2");
 			/*
 			GameObject go = GameObject.FindGameObjectWithTag("Player");
 			GameSettings.SavePlayerPosition(go.transform.position);*/
 		}	
+		
+		if(Input.GetButtonUp("Spell1")) {
+			
+			SendMessage("Casting1");
+		}
+		
+		if(Input.GetButtonUp("Spell2")) {
+			
+			SendMessage("Casting2");
+		}	
+		
 		
 		if(Input.GetButtonUp("Toggle Inventory")) {
 			Messenger.Broadcast("ToggleInventory");

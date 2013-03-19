@@ -44,9 +44,9 @@ public class PlayerGUI : MonoBehaviour {
 	/***************************************************/
 	private bool _displayInventoryWindow = true;
 	private const int INVENTORY_WINDOW_ID = 1;
-	private Rect _inventoryWindowRect = new Rect(10, Screen.height/2, 370, 265);
-	private int _inventoryRows = 6;
-	private int _inventoryCols = 4;
+	private Rect _inventoryWindowRect = new Rect(10, Screen.height/2, 345, 140);
+	private int _inventoryRows = 2;
+	private int _inventoryCols = 6;
 	
 	/***/
 	public enum selectItemState {
@@ -92,9 +92,10 @@ public class PlayerGUI : MonoBehaviour {
 	private List<QuestID> questList = new List<QuestID>();
 	private List<string> itemquestList = new List<string>();
 	
-	LegendaryQuest legendaryQuest = new LegendaryQuest();
-	BootsQuest bootsQuest = new BootsQuest();
-	WandQuest wandQuest = new WandQuest();
+	public static LegendaryQuest legendaryQuest = new LegendaryQuest();
+	public static BootsQuest bootsQuest = new BootsQuest();
+	public static WandQuest wandQuest = new WandQuest();
+	public static WaterQuest waterQuest = new WaterQuest();
 	
 	/****************************************************/
 	/* Encycopedia window variables */
@@ -146,6 +147,7 @@ public class PlayerGUI : MonoBehaviour {
 		Messenger.AddListener("AddQuestID1", AddQuestID1);
 		Messenger.AddListener("AddQuestID2", AddQuestID2);
 		Messenger.AddListener("AddQuestID3", AddQuestID3);
+		Messenger.AddListener("AddQuestID4", AddQuestID4);
 		Messenger.AddListener("CloseQuest", ClearQuest);
 		/****************************************************/
 		/* Mixing Listener */
@@ -171,12 +173,13 @@ public class PlayerGUI : MonoBehaviour {
 		Messenger.RemoveListener("AddQuestID1", AddQuestID1);
 		Messenger.RemoveListener("AddQuestID2", AddQuestID2);
 		Messenger.RemoveListener("AddQuestID3", AddQuestID3);
+		Messenger.RemoveListener("AddQuestID4", AddQuestID4);
 		Messenger.RemoveListener("CloseQuest", ClearQuest);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//checkQuestItem();
+		
 	}
 	
 	void OnGUI() {
@@ -237,37 +240,43 @@ public class PlayerGUI : MonoBehaviour {
 		if(lootingItem == null)
 			return;
 		
+		
+		
 		if(lootingItem.loot.Count == 0) {
 			ClearWindow();
 			return;
 		}
+		
+		
+		
 		if(GUI.Button(new Rect(_offset * 3, (_lootWindowHeight - _alchemyButtonHeight) - 15, _alchemyButtonWidth, _alchemyButtonHeight),"GET ALL")) {
-		getAllItemFromLootToInventory();
+			getAllItemFromLootToInventory();
+			CheckQuestItem();
 		}
+		
+		
 		
 		if(GUI.Button(new Rect(_offset * 6 + _alchemyButtonWidth, (_lootWindowHeight - _alchemyButtonHeight) - 15, _alchemyButtonWidth, _alchemyButtonHeight),"CANCEL"))
 			ClearWindow();
 		
-		/*
-		_lootWindowSlider = GUI.BeginScrollView(new Rect(_offset * .5f, 15, _lootWindowRect.width - 10, 70),
-												_lootWindowSlider, 
-												new Rect(0, 0, (_lootItems.Count * buttonWidth) + _offset, buttonHeight + _offset));
-												*/
+		
+		int lootCount = lootingItem.loot.Count;
+		
 		_lootWindowSlider = GUI.BeginScrollView(new Rect(_offset * 1, _offset * 2, _lootWindowRect.width - _offset * 2, _lootWindowRect.height - _offset * 8),
 												_lootWindowSlider, 
-												new Rect(0, 0, (buttonWidth) + _offset, (lootingItem.loot.Count * buttonHeight) + _offset));
+												new Rect(0, 0, (buttonWidth) + _offset, (lootCount * buttonHeight) + _offset));
 		
+		for(int cnt = 0; cnt < lootCount; cnt++){
 			
-		for(int cnt = 0; cnt < lootingItem.loot.Count; cnt++){
+			if(lootingItem == null) //make this return because close windowloot will make lootingItem value be null
+				return;
 			
-			setAmountWindowPosition();
+			setAmountWindowPosition();		
 			if(GUI.Button(new Rect(5 ,5 + (5 * cnt) + (buttonHeight * cnt), buttonWidth, buttonHeight), new GUIContent(lootingItem.loot[cnt].Icon,lootingItem.loot[cnt].ToolTip()))){
+	
 				setShowWindowSelectAmount(true);
 				setAmountVariable(lootingItem.loot[cnt].CurAmount, cnt, selectItemState.LootToInventory);	
 					
-				/*
-				PlayerCharacter.Inventory.Add(lootingItem.loot[cnt]);
-				lootingItem.loot.RemoveAt(cnt);*/
 				CheckQuestItem();
 			}
 			GUI.Box(new Rect(5 + _offset + buttonWidth , 5 + (5 * cnt) + (buttonHeight * cnt), _lootWindowWidth - (5 + _offset * 6 + buttonWidth),buttonHeight), lootingItem.loot[cnt].Name + " * " + lootingItem.loot[cnt].CurAmount );
@@ -284,11 +293,8 @@ public class PlayerGUI : MonoBehaviour {
 	}
 		
 	private void ClearWindow() {
-		_displayLootWindow = false;		
-		//_lootItems.Clear();
-		
+		_displayLootWindow = false;	
 		lootingItem.OnMouseUp();
-		
 		lootingItem = null;
 	}
 	
@@ -301,18 +307,18 @@ public class PlayerGUI : MonoBehaviour {
 	
 	private void InventoryWindow(int id) {
 		int cnt = 0;
-		
 		for(int y = 0; y < _inventoryRows; y++) {
 			for(int x = 0; x < _inventoryCols; x++) {	
 				if(cnt < PlayerCharacter.Inventory.Count) {
 					
 					setAmountWindowPosition();			
-					if(GUI.Button(new Rect(5 + (x * buttonWidth), 20 + (y * buttonHeight), buttonWidth, buttonHeight), new GUIContent(PlayerCharacter.Inventory[cnt].Icon, PlayerCharacter.Inventory[cnt].ToolTip()))) {
+					if(GUI.Button(new Rect(5 + (x * buttonWidth) + (5 * (x+1)), 20 + (y * buttonHeight) + (5 * (y+1)), buttonWidth, buttonHeight), new GUIContent(PlayerCharacter.Inventory[cnt].Icon, PlayerCharacter.Inventory[cnt].ToolTip()))) {
 						
 						//set mode Enum of the select amount such as delete, alchemy, drp etc.
+						if(_displayAlchemyWindow) {
 						setShowWindowSelectAmount(true);
 						setAmountVariable(PlayerCharacter.Inventory[cnt].CurAmount, cnt, selectItemState.InventoryToAlchemy);
-						
+						}
 						switch (PlayerCharacter.Inventory[cnt].Type) {
 							
 							case ItemTypes.Usable :
@@ -324,7 +330,7 @@ public class PlayerGUI : MonoBehaviour {
 					}
 				}
 				else {		
-					GUI.Label(new Rect(5 + (x * buttonWidth), 20 + (y * buttonHeight), buttonWidth, buttonHeight),(x + y * _inventoryCols).ToString(), "box");	
+						GUI.Label(new Rect(5 + (x * buttonWidth) + (5 * (x+1)), 20 + (y * buttonHeight) + (5 * (y+1))	, buttonWidth, buttonHeight),(x + y * _inventoryCols).ToString(), "box");		
 				}
 				cnt++;
 			}
@@ -427,6 +433,9 @@ public class PlayerGUI : MonoBehaviour {
 	}
 	
 	private void getAllItemFromLootToInventory() {
+		if(lootingItem == null)
+			return;
+		
 		int count = lootingItem.loot.Count-1;
 		for(int index = count; index >= 0; index--) {
 			if(PlayerCharacter.Inventory.Count < PlayerCharacter.MAX_INVENTORY) {
@@ -542,6 +551,9 @@ public class PlayerGUI : MonoBehaviour {
 		case QuestID.WandOfTruth:
 			WandQuest();
 			break;
+		case QuestID.WaterFromCactus:
+			WaterQuest();
+			break;
 		}
 	}
 	
@@ -573,6 +585,52 @@ public class PlayerGUI : MonoBehaviour {
 			}
 			break;
 		case 3:
+			if(bootsQuest.Process == QuestProcess.Complete) {
+				if(GUI.Button(new Rect(100, 150, buttonquestWidth, buttonquestHeight), "THANK")) 
+				{
+					bootsQuest.NextDialogue();
+					for (int i = 0; i < bootsQuest.ItemGoal.Length; i++) {
+						for(int cnt = 0; cnt < PlayerCharacter.Inventory.Count; cnt++) {
+							if(PlayerCharacter.Inventory[cnt].Name == bootsQuest.checkItemGoal(i))
+								PlayerCharacter.Inventory[cnt].CurAmount -= bootsQuest.checkItemMax(i);
+							
+							if(PlayerCharacter.Inventory[cnt].CurAmount <= 0)
+								PlayerCharacter.Inventory.RemoveAt(cnt);			
+						}
+					}
+					
+					
+					PlayerCharacter.Inventory.Add(ItemGenerator.CreatingProcess(bootsQuest.TypeReward, bootsQuest.Reward, 1));
+					bootsQuest.NextDialogue();
+					questList.Remove(bootsQuest.Id);
+				}
+			}
+			else {
+				if(GUI.Button(new Rect(100, 150, buttonquestWidth, buttonquestHeight), "LET'S SEE")) 
+				{
+					bootsQuest.BackDialogue();
+				}
+			}
+			break;
+		case 4:
+			if(GUI.Button(new Rect(30, 150, buttonquestWidth, buttonquestHeight), "LET'S GO")) {
+				
+				GameObject owlDesert = Helpers.Find("WarpAltar_Desert1",typeof(GameObject)) as GameObject;
+				Vector3 dropPosition = new Vector3(owlDesert.transform.position.x, owlDesert.transform.position.y, owlDesert.transform.position.z);
+				//GameObject owlDesert = Helpers.Find("OwlFountainSand",typeof(GameObject)) as GameObject;
+				//Vector3 dropPosition = new Vector3(owlDesert.transform.position.x - 60, owlDesert.transform.position.y - 70, owlDesert.transform.position.z +70);
+				GameObject player = GameObject.FindGameObjectWithTag("Player");
+				
+				player.transform.position = dropPosition;
+				/*
+				dropPosition = new Vector3(destination.transform.position.x, destination.transform.position.y + 3, destination.transform.position.z - 7);
+				if(other.transform.CompareTag("Player")) 
+			other.transform.position = dropPosition;*/
+			
+			}
+				
+			if(GUI.Button(new Rect(20 + buttonquestWidth + 60, 150, buttonquestWidth, buttonquestHeight), "NO"))
+				bootsQuest.BackDialogue();
 			
 			break;
 		default:break;
@@ -613,6 +671,96 @@ public class PlayerGUI : MonoBehaviour {
 		}
 	}
 	
+	private void WaterQuest() {
+		
+		GUILayout.Label(waterQuest.WaterQuestTalk());
+		switch(waterQuest.Dialogue) {
+		case 0:
+			if(GUI.Button(new Rect(30, 150, buttonquestWidth, buttonquestHeight), "YES"))
+				waterQuest.NextDialogue();
+				
+			if(GUI.Button(new Rect(20 + buttonquestWidth + 60, 150, buttonquestWidth, buttonquestHeight), "NO"))
+				waterQuest.BackDialogue();
+			break;
+		case 1:
+			if(GUI.Button(new Rect(30, 150, buttonquestWidth, buttonquestHeight), "WHERE"))
+				waterQuest.NextDialogue();
+				
+			if(GUI.Button(new Rect(20 + buttonquestWidth + 60, 150, buttonquestWidth, buttonquestHeight), "MAYBE")) 
+				waterQuest.BackDialogue();
+			break;
+		case 2:				
+			if(GUI.Button(new Rect(100, 150, buttonquestWidth, buttonquestHeight), "OK")) 
+			{		
+				waterQuest.NextDialogue();
+				ClearQuest();
+				AddQuest(QuestID.WaterFromCactus);
+				ToggleQuestlogWindow();
+			}
+			break;
+		case 3:
+			if(waterQuest.Process == QuestProcess.Complete) {
+				if(GUI.Button(new Rect(30, 150, buttonquestWidth, buttonquestHeight), "YES"))
+				{
+					GameObject owlSand = Helpers.Find("WaterSandFountain",typeof(GameObject)) as GameObject;
+					
+					owlSand.SetActive(true);
+					//owlSand.gameObject.
+					//owlSand.GetComponent<Water Fountain>
+					
+					waterQuest.NextDialogue();
+				}
+				
+				if(GUI.Button(new Rect(20 + buttonquestWidth + 60, 150, buttonquestWidth, buttonquestHeight), "NO")) 
+					waterQuest.BackDialogue();
+				
+					/*
+					for (int i = 0; i < bootsQuest.ItemGoal.Length; i++) {
+						for(int cnt = 0; cnt < PlayerCharacter.Inventory.Count; cnt++) {
+							if(PlayerCharacter.Inventory[cnt].Name == bootsQuest.checkItemGoal(i))
+								PlayerCharacter.Inventory[cnt].CurAmount -= bootsQuest.checkItemMax(i);
+							
+							if(PlayerCharacter.Inventory[cnt].CurAmount <= 0)
+								PlayerCharacter.Inventory.RemoveAt(cnt);			
+						}
+					}
+					*/
+					
+			}
+			else {
+				if(GUI.Button(new Rect(100, 150, buttonquestWidth, buttonquestHeight), "Hmm")) 
+				{
+					waterQuest.BackDialogue();
+				}
+			}
+			break;
+		case 4:
+			if(GUI.Button(new Rect(100, 150, buttonquestWidth, buttonquestHeight), "THANK")) {
+				PlayerCharacter.Inventory.Add(ItemGenerator.CreatingProcess(waterQuest.TypeReward, waterQuest.Reward, 1));
+				questList.Remove(waterQuest.Id);
+				waterQuest.NextDialogue();
+			}
+
+			break;
+		case 5:
+			if(GUI.Button(new Rect(30, 150, buttonquestWidth, buttonquestHeight), "GO")) {
+				GameObject owlForest = Helpers.Find("WarpAltar_Forest2",typeof(GameObject)) as GameObject;
+				Vector3 dropPosition = new Vector3(owlForest.transform.position.x, owlForest.transform.position.y + 5, owlForest.transform.position.z - 5);
+				GameObject player = GameObject.FindGameObjectWithTag("Player");
+				
+				player.transform.position = dropPosition;	
+			}
+				
+			if(GUI.Button(new Rect(20 + buttonquestWidth + 60, 150, buttonquestWidth, buttonquestHeight), "THANK")) 
+				waterQuest.BackDialogue();
+			
+			break;
+			
+		default:break;
+		}
+		
+	}
+	
 	private void AddQuest(QuestID questID) {
 		questList.Add(questID);
 
@@ -638,6 +786,12 @@ public class PlayerGUI : MonoBehaviour {
 					}
 				break;
 				
+			case QuestID.WaterFromCactus:
+				for (int i = 0; i < waterQuest.ItemGoal.Length; i++) {
+						itemquestList.Add(waterQuest.checkItemGoal(i));
+					}
+				break;
+				
 			default:break;
 			}
 		}
@@ -655,6 +809,11 @@ public class PlayerGUI : MonoBehaviour {
 	
 	private void AddQuestID3() {
 		currentQuestID = QuestID.WandOfTruth;
+		DisplayQuest();
+	}
+	
+	private void AddQuestID4() {
+		currentQuestID = QuestID.WaterFromCactus;
 		DisplayQuest();
 	}
 	
@@ -733,7 +892,23 @@ public class PlayerGUI : MonoBehaviour {
 					}
 		
 					break;	
+				
+				case QuestID.WaterFromCactus:
+					
+					bool showQ4 = waterQuest.Showing;
+					showQ4 = GUILayout.Toggle(showQ4," "+questNumber+". "+waterQuest.Goal+" [" + waterQuest.Process + "]",GUILayout.Width(400.0f));
+					waterQuest.changeShowing(showQ4);
+					
+					if(waterQuest.Showing) {
+						for (int i = 0; i < waterQuest.ItemGoal.Length; i++) {
+							GUILayout.Toggle(waterQuest.checkItemCur(i) >= waterQuest.checkItemMax(i) ? true : false, " " + waterQuest.checkItemGoal(i) + " ( " + waterQuest.checkItemCur(i) + " / " + waterQuest.checkItemMax(i) + " )");
+						}
 					}
+		
+					break;	
+					
+				default:break;
+				}
 				
 				questNumber++;
 				}
@@ -752,7 +927,7 @@ public class PlayerGUI : MonoBehaviour {
 			
 			for(int i = 0; i < PlayerCharacter.Inventory.Count; i++) {	
 				if(PlayerCharacter.Inventory[i].Name.Contains(itemquestList[j])) {	
-					count++;
+					count = PlayerCharacter.Inventory[i].CurAmount;
 				}	
 			}
 			
@@ -770,6 +945,12 @@ public class PlayerGUI : MonoBehaviour {
 			for (int ic = 0; ic <  wandQuest.ItemGoal.Length; ic++) {
 				if(wandQuest.checkItemGoal(ic).Contains(itemquestList[j])) {
 					wandQuest.addItemCur(ic,count);
+				}
+			}
+			
+			for (int ic = 0; ic <  waterQuest.ItemGoal.Length; ic++) {
+				if(waterQuest.checkItemGoal(ic).Contains(itemquestList[j])) {
+					waterQuest.addItemCur(ic,count);
 				}
 			}
 			
@@ -800,6 +981,16 @@ public class PlayerGUI : MonoBehaviour {
 					}
 					if(haveAllItem.Equals(wandQuest.ItemGoal.Length))
 						wandQuest.Process = QuestProcess.Complete;
+						
+					break;
+				
+				case QuestID.WaterFromCactus: 
+					for (int all = 0; all < waterQuest.ItemGoal.Length; all++) {
+						if(waterQuest.checkItemCur(all) >= waterQuest.checkItemMax(all))
+							haveAllItem += 1;
+					}
+					if(haveAllItem.Equals(waterQuest.ItemGoal.Length))
+						waterQuest.Process = QuestProcess.Complete;
 						
 					break;
 					

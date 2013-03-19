@@ -33,7 +33,7 @@ public class RecipeData {
 		_recipeList[0]._amountIngredient[0] = 1;
 		_recipeList[0]._itemIngredient[1] = ItemID.RabbitFur;
 		_recipeList[0]._amountIngredient[1] = 2;
-		_recipeList[0]._itemResult = ItemID.Boots_of_Intelligent;
+		_recipeList[0]._itemResult = ItemID.WingsBoots;
 		_recipeList[0]._itemResultType = ItemTypes.Legendary;
 		_recipeList[0]._showRecipe = false;
 		_recipeList[0]._unlockRecipe = true;
@@ -46,7 +46,7 @@ public class RecipeData {
 		_recipeList[1]._amountIngredient = new int[2];
 		_recipeList[1]._itemIngredient[0] = ItemID.CognitiveHerb;
 		_recipeList[1]._amountIngredient[0] = 20;
-		_recipeList[1]._itemIngredient[1] = ItemID.Water_of_Cactus;
+		_recipeList[1]._itemIngredient[1] = ItemID.WaterCactus;
 		_recipeList[1]._amountIngredient[1] = 1;
 		_recipeList[1]._itemResult = ItemID.FortunePotion;
 		_recipeList[1]._itemResultType = ItemTypes.Quest;

@@ -57,11 +57,14 @@ public class AdvancedMovement : MonoBehaviour {
 	private State _state;
 	private BaseCharacter pc;
 	
+	private bool _dead;
+	
 	public void Awake() {
 		_myTransform = transform;							
 		_controller = GetComponent<CharacterController>();
 		_state = AdvancedMovement.State.Init;	
 	 	pc = GetComponent<BaseCharacter>();
+		_dead = false;
 	}
 	
 	IEnumerator Start () {
@@ -135,7 +138,10 @@ public class AdvancedMovement : MonoBehaviour {
 				Side();
 			}
 			else {
-				Idle();	
+				if(!_dead)
+					Idle();	
+				else
+					animation.Stop();
 			}
 				
 			if(_jump) {			//if the user press jump key
@@ -189,6 +195,10 @@ public class AdvancedMovement : MonoBehaviour {
 		_jump = true;	
 	}
 	/* ANIMATION CALLING FUNCTION */	
+	
+	public void setDead() {
+		_dead = true;	
+	}
 	
 	public void Idle() {
 		if(idleAnimName == "")

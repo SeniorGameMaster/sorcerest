@@ -9,14 +9,29 @@ public class AI : MonoBehaviour {
 		Init,			//checking the value that we need to use
 		Setup,			//assign all value
 		Search,			//finding player
-		Decide			//decide what to do with target	
+		Decide,			//decide what to do with target	
+		Walk,			//Make Mob walk forward
+		Back,			//Make Mobe back home
+		Dead			//Mob doesn't update anything because it dead
 
 	}
 	
 	public float perceptionRadius = 10;
+	public float minHomeDistance = 3;
+	public float maxHomeDistance = 15;
 	
 	//public float baseMeleeRange = 3.5f;
 	public Transform target;
+	
+	public bool randomWalk = false;
+	private float _walkTimer = 0;	//timer for counting walking
+	private float _walkTime;		//Random value that assign the time length when walk
+	private float _rotateTimer = 0;	//timer for counting rotation
+	private float _rotateTime = 6;		//Random value that assign the tine length when rotate
+	private Quaternion rot;			//Random quaternion value in y-axis in range 0 - 360 degree
+	private float _randomTimer = 0;	//timer for counting random behavior
+	private float _randomTime = 3;	//Random time in random monster behavior
+	private int _randomBehavior;	//The variable that check the monster behavior
 	
 	private Transform _myTransform;
 	
@@ -38,6 +53,15 @@ public class AI : MonoBehaviour {
 		StartCoroutine("FSM");
 	}
 	
+	void Update() {
+		if(randomWalk) {
+			if(_state != State.Search && _state != State.Decide && _state != State.Dead){
+				Behavior();
+				FarHome();
+			}
+		}
+	}
+	
 	//Finite state machine
 	private IEnumerator FSM() {
 		while(_state != AI.State.Idle) {
@@ -53,7 +77,13 @@ public class AI : MonoBehaviour {
 				break;	
 			case State.Decide :
 				Decide();
-				break;	
+				break;
+			case State.Walk :
+				Walk();
+				break;
+			case State.Back :
+				BackHome();
+				break;
 			}
 			
 			yield return null;
@@ -83,13 +113,79 @@ public class AI : MonoBehaviour {
 		
 	}
 	
+	private void Behavior() {
+		if(_state != AI.State.Walk)
+			_randomTimer += Time.deltaTime;
+		
+			if(_randomTimer > _randomTime) {
+				_randomTimer = 0;
+				_randomBehavior = Random.Range(0,5);
+				switch (_randomBehavior) {
+				case 0:case 1:	
+					//_isWalk = false;	
+					_state = AI.State.Walk;
+					_walkTime = Random.Range(1,4);
+					StartCoroutine("FSM");
+				break;
+				case 2:case 3:	case 4:	
+					_rotateTime = Random.Range(8,12);
+					//_isWalk = true;	
+				break;
+				default:break;
+				}
+			}
+		
+		_rotateTimer += Time.deltaTime;
+		
+		if(_rotateTimer > _rotateTime) {
+			_rotateTimer = 0;
+			 rot = Quaternion.Euler( 0, Random.Range(0, 360), 0);
+			
+		}
+		
+		_myTransform.rotation = Quaternion.Slerp(_myTransform.rotation, rot, Time.deltaTime * 3.0f);
+	}
+	
+	private void FarHome() {
+		if(Vector3.Distance(_myTransform.position, _home.position) > maxHomeDistance) {
+			target = _home;
+			_state = State.Back;
+			StartCoroutine("FSM");
+		}
+	}
+	
+	private void BackHome() {
+		Move();
+		
+		if(Vector3.Distance(_myTransform.position, _home.position) < minHomeDistance) {
+			target = null;
+			_state = State.Idle;
+		}
+
+	}
+	
+	private void Walk() {
+		
+		_walkTimer += Time.deltaTime;
+		SendMessage("MoveMeForward", AdvancedMovement.Forward.forward);	
+		
+		if(_walkTimer > _walkTime) {
+			_walkTimer = 0;
+			_state = AI.State.Idle;
+			SendMessage("MoveMeForward", AdvancedMovement.Forward.none);	
+		}
+	}
+	
 	private void Search() {
 		if(target == null) {
 			Debug.Log("No target that monster select");
-			_state = AI.State.Idle;
 			
 			if(_me.InCombat)
 				_me.InCombat = false;
+			
+			
+			_state = AI.State.Idle;
+			
 		}
 		else {
 			_state = AI.State.Decide;
@@ -248,17 +344,33 @@ public class AI : MonoBehaviour {
 		}	
 	}
 	
+	public void setAIDead() {
+		_state = AI.State.Dead;
+		//StartCoroutine("FSM");
+		_myTransform.GetComponent<LootingItem>().OnMouseExit();
+		Debug.Log("DEAD");
+	}
+	
+	public bool isAIDead() {
+		if(_state == AI.State.Dead)
+			return true;
+		else
+			return false;
+	}
 	public void OnTriggerEnter(Collider other) {
-		if(other.CompareTag("Player")) {
+		if(other.CompareTag("Player") && _state != AI.State.Dead) {
 			target = other.transform;
 			PlayerCharacter.Instance.InCombat = true;
 			_state = AI.State.Search;
 			StartCoroutine("FSM");
 		}
+			//_state = AI.State.Dead;
+		
+		
 	}
 	
 	public void OnTriggerExit(Collider other) {
-		if(other.CompareTag("Player")) {
+		if(other.CompareTag("Player") && _state != AI.State.Dead) {
 			target = _home;
 			PlayerCharacter.Instance.InCombat = false;
 			

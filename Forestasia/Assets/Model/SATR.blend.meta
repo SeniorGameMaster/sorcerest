@@ -1,0 +1,84 @@
+fileFormatVersion: 2
+guid: 1d509c9e83575504589fb0744cd72cf3
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: BackStar
+    100002: FrontStar_002
+    100004: InnerStar_003
+    100006: Innn
+    100008: Plane_000
+    100010: //RootNode
+    400000: BackStar
+    400002: FrontStar_002
+    400004: InnerStar_003
+    400006: Innn
+    400008: Plane_000
+    400010: //RootNode
+    2300000: BackStar
+    2300002: FrontStar_002
+    2300004: InnerStar_003
+    2300006: Innn
+    2300008: Plane_000
+    3300000: BackStar
+    3300002: FrontStar_002
+    3300004: InnerStar_003
+    3300006: Innn
+    3300008: Plane_000
+    4300000: InnerStar_003
+    4300002: Plane_000
+    4300004: FrontStar_002
+    4300006: Innn
+    4300008: BackStar
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

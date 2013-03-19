@@ -24,7 +24,7 @@ public class Item : MonoBehaviour {
 		_curDur = _maxDur;
 	}
 	
-	public Item (string name, ItemID id, int curAmount, int maxAmount, int point, ItemTypes rare, string detail, int maxDur, int curDur) {
+	public Item (string name, ItemID id, int curAmount, int maxAmount, int point, ItemTypes rare, string detail, int maxDur, int curDur, Texture2D iconPic) {
 		_name = name;
 		_id = id;
 		_curAmount = curAmount;
@@ -34,6 +34,7 @@ public class Item : MonoBehaviour {
 		_detail = detail;
 		_maxDur = maxDur;
 		_curDur = curDur;
+		_icon = iconPic;
 	}
 	
 	public string Name {
@@ -120,10 +121,10 @@ public enum ItemID {
 	*/
 	[Description("Unknown Item")]
 		None = 0,
-	[Description("The boots that improve  \n owned intelligent.")]
-		Boots_of_Intelligent = 1,
+	[Description("The boots that have  \n wings in own.")]
+		WingsBoots = 1,
 	[Description("The legendary wand using \n for see reality.")]
-		Wand_of_Truth = 2,
+		WandOfTruth = 2,
 	[Description("Everythings will answer by \n this pen.")]
 		FeatherPen = 3,
 	[Description("Shining and brilliant \n rare crystal.")]
@@ -140,18 +141,16 @@ public enum ItemID {
 		RabbitFur = 9,
 	[Description("Branch from thounsand \n year olds tree.")]
 		MysticalBranch = 10,
-	[Description("old branch from tree.")]
-		OldBranch = 11,
 	[Description("rare herb grow by \n magic power from forest.")]
-		CognitiveHerb = 12,
+		CognitiveHerb = 11,
 	[Description("sharp spike from \n hedgehog use to pierce smth.")]
-		Spike_of_Hedgehog = 13,
+		Spike = 12,
 	[Description("stored water from \n cactus around dessert")]
-		Water_of_Cactus = 14,
+		WaterCactus = 13,
 	[Description("mystical liquid extract by \n alchemy ")]
-		FortunePotion = 15,
+		FortunePotion = 14,
 	[Description("old scroll contain \n some description ")]
-		TruthScroll = 16
+		TruthScroll = 15
 }
 
 	
